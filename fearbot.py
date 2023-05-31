@@ -5,10 +5,29 @@
 import random
 from random import randint # Imports the ability to choose between integers randomly
 
+# Creates the customer detail dictionary to have memory of user input of details
+customer_details = {}
+
 # List of names
 names = ["Hanni", "Chaewon", "Nicole", "Kaitlin", "Denzelle", "Harry", "Yeonjun", "Jaehyun", "Jungkook", "Sunghoon"]
 
-# Create a welcome function that welcomes the customer to the bot
+# Defines a function called not_blank, validates inputs to check if they are blank
+def not_blank(question):
+    '''
+    Purpose: Checks input to make sure it is not blank, if blank
+    it will ask the user to input something that is not blank
+    Parameters: Question
+    Returns: Response
+    '''
+    valid = False 
+    while not valid: # If not valid
+        response = input(question) # Because there isn't a set question, this function will be able to work with any question = x variable
+        if response != "":
+            return response.title() # Returning the response also breaks loop, .title changes strings to make it a capital 
+        else:
+            print("The input you provide cannot be blank") # Clear instructions
+
+# Defines a welcome function that welcomes the customer to the bot
 def welcome():
     '''
     Purpose: To generate a random name from the list and print out 
@@ -51,11 +70,11 @@ def order_type(): # Defines a new function for the order type
             if delivery >= 1 and delivery <= 2: # Checks to see if the number is greater than or equal to 1, or less than or equal to 2
                 if delivery == 1: # Checks to see if the input entered is '1', if so, the program will print 'Delivery' then break out of loop
                     print ("Delivery")
-                    break
+                    break # Breaks out of loop to progress with program
                 
                 elif delivery == 2:  # Checks to see if the input entered is '2', if so, the program will print 'Click and Collect' then break out of loop
-                    print("click and collect")
-                    break
+                    click_collect() # If' '2' is inputted, the program will progress onto the click_collect() function
+                    break # Breaks out of loop to progress with program
                     
             else: # If the input was not one of those two, the program will print this message
                 print("Please pick between 1 (Delivery) or 2 (Click and Collect)") # Clearly states what the user has to enter to proceed with their order
@@ -66,7 +85,22 @@ def order_type(): # Defines a new function for the order type
 
 # Collects the user's name, address and phone number if order is intended for delivery
 
-# Collects the user's name and phone number as well as notifying the user that they will receive a text message if order was intended for click and collect
+# Collects the user's name and phone number if order was intended for click and collect
+def click_collect():
+    # Asks the user to provide Click & Collect information (NAME AND PHONE NUMBER)
+    print("You have chosen to have our Click & Collect service")
+    print("Please provide your name and phone number so we know how to contact you!")
+    # Basic instructions for asking name
+    question = ("Please enter your name: ")
+    customer_details['name'] = not_blank(question)
+    #print (customer_details['name'])
+
+    # Basic instructions for asking for user's phone number
+    question = ("Please enter your phone number: ")
+    customer_details['phone'] = not_blank(question)
+    #print (customer_details['phone'])
+    
+    print(customer_details)
 
 # Make a menu of at least 12 items for the user to choose from
 # Make each item available item orderable
@@ -82,6 +116,7 @@ def order_type(): # Defines a new function for the order type
 # Asks the user if they wish to cancel the order before submitting it
 
 # Ask if user wishes to place another order, or exit the bot
+# if order is for pickup, notify the user that they will receive a text message when order is ready once confirmed 
 
 # Calls the function/Tells the program to run a specific function
 def main():
