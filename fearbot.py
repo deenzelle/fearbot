@@ -42,8 +42,8 @@ def order_type(): # Defines a new function for the order type
     '''
     # Asks the user how they would prefer to have their order handled
     print("Do you want your order delivered or are you planning to click & collect?")
-    print("To select delivery enter '1'")
-    print("To select Click & Collect enter '2'")
+    print("To select delivery enter '1'") # Clearly states what the user has to enter to proceed with their order
+    print("To select Click & Collect enter '2'") # Clearly states what the user has to enter to proceed with their order
     while True: # Creates a loop where while it is 'True', the program will continually ask the user to input either 1 or 2
         try:
             # Sets the delivery variable to the integer inputted (ideally it should be either 1 or 2)
@@ -54,11 +54,11 @@ def order_type(): # Defines a new function for the order type
                     break
                 
                 elif delivery == 2:  # Checks to see if the input entered is '2', if so, the program will print 'Click and Collect' then break out of loop
-                    print("click and collect") # Clearly states what the user has to enter to proceed with their order
+                    print("click and collect")
                     break
                     
             else: # If the input was not one of those two, the program will print this message
-                print("Please pick between 1 (Delivery) or 2 (Click and Collect)")
+                print("Please pick between 1 (Delivery) or 2 (Click and Collect)") # Clearly states what the user has to enter to proceed with their order
 
         except ValueError: # Only happens if the user has entered a letter for an input
             print("That is not a valid number") # Only allows numbers to be a valid input
