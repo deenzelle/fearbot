@@ -11,6 +11,7 @@ def order_type(): # Defines a new function
     print("Do you want your order delivered or are you planning to click & collect?")
     print("To select delivery enter '1'")
     print("To select Click & Collect enter '2'")
+    while True: # Creates a loop where while it is 'True', the program will continually ask the user to input either 1 or 2
         try:
             # Sets the delivery variable to the integer inputted (ideally it should be either 1 or 2)
             delivery = int(input())
