@@ -1,0 +1,3 @@
+Bugs as of 1/6/23:
+- Phone number allows letters
+- Name input allows numbers
