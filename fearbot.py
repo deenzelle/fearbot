@@ -79,7 +79,7 @@ def order_type(): # Defines a new function for the order type
             else: # If the input was not one of those two, the program will print this message
                 print("Please pick between 1 (Delivery) or 2 (Click and Collect)") # Clearly states what the user has to enter to proceed with their order
 
-        except ValueError: # Only happens if the user has entered a letter for an input
+        except ValueError: # If input = ValueError, prints following error message
             print("That is not a valid number") # Only allows numbers to be a valid input
             print("Please pick between 1 (Delivery) or 2 (Click and Collect)") # Clearly states what the user has to enter to proceed with their order
 
