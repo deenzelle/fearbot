@@ -9,8 +9,8 @@ from random import randint  # Imports the ability to choose between integers ran
 customer_details = {}
 
 # List of names
-names = ["Hanni", "Chaewon", "Nicole", "Kaitlin", "Denzelle",
-         "Harry", "Yeonjun", "Jaehyun", "Jungkook", "Sunghoon"]
+names = ["Kazuha", "Chaewon", "Nicole", "Kaitlin", "Denzelle",
+         "Yunjin", "Eunchae", "Jaehyun", "Jungkook", "Sakura"]
 
 # Defines a function called not_blank, validates inputs to check if they are blank
 
