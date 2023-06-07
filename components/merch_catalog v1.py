@@ -11,4 +11,4 @@ merch_prices = [69.50, 69.50, 69.50, 69.50, 69.50, 69.50, 69.50, 69.50, 69.50, 4
 
 number_merch = 13
 for count in range (number_merch):
-    print("{} {} ${:.2f}" .format(count+1,merch_names[count],merch_prices[count]))
+    print(count,merch_names[count],merch_prices[count])
