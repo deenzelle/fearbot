@@ -1,5 +1,6 @@
 # FEARBOT Program
 # A progam that can be used by 'FEARNOT' to order LE SSERAFIM merch
+# dealing with comments when the internal is finished
 
 # Imports a library that allows the program to have randomness where nescessary
 import random
@@ -12,9 +13,16 @@ customer_details = {}
 names = ["Kazuha", "Chaewon", "Nicole", "Kaitlin", "Denzelle",
          "Yunjin", "Eunchae", "Jaehyun", "Jungkook", "Sakura"]
 
+# list of merchandise items available to purchase
+merch_names = ['FEARLESS ALBUM (BLACK PETROL VER)', 'FEARLESS ALBUM (MONOCHROME BOUQUET VER)', 'FEARLESS ALBUM (BLUE CYPHER VER)',
+               'ANTIFRAGILE ALBUM (FROZEN AQUAMARINE VER)', 'ANTIFRAGILE ALBUM (IRIDESCENT OPAL VER)', 'ANTIFRAGILE ALBUM (MIDNIGHT ONYX VER)',
+               'UNFORGIVEN ALBUM (DEWY SAGE VER)', 'UNFORGIVEN ALBUM (DUSTY AMBER VER)', 'UNFORGIVEN ALBUM (BLOODY ROSE VER)', 
+               'LE SSERAFIM LIGHT STICK', 'LE SSERAFIM FLOOR MAT', 'LE SSERAFIM TUMBLER', 'LE SSERAFIM HOODIE']
+
+# list of available merchandise prices
+merch_prices = [69.50, 69.50, 69.50, 69.50, 69.50, 69.50, 69.50, 69.50, 69.50, 45.50, 25.50, 15.50, 45.50]
+
 # Defines a function called not_blank, validates inputs to check if they are blank
-
-
 def not_blank(question):
     '''
     Purpose: Checks input to make sure it is not blank, if blank
@@ -143,6 +151,10 @@ def click_collect_info():
 # Make a menu of at least 12 items for the user to choose from
 # Make each item available item orderable
 # Make the cost of each item display within the menu
+def catalog():
+    number_merch = 13
+    for count in range (number_merch):
+        print("{} {} ${:.2f}" .format(count+1,merch_names[count],merch_prices[count]))
 
 # Prints out order details
 # Items & Prices
@@ -167,6 +179,7 @@ def main():
     '''
     welcome()
     order_type()
+    catalog()
 
 
 main()  # Runs the main function
