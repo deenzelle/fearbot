@@ -150,7 +150,7 @@ def click_collect_info():
 
 # Make a menu of at least 12 items for the user to choose from
 # Make each item available item orderable
-# Make the cost of each item display within the menu
+# Make the cost of each item display within the catalog menu
 def catalog():
     number_merch = 13
     for count in range (number_merch):
