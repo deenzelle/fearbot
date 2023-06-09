@@ -37,15 +37,29 @@ def order_merch():
             except ValueError:
                 print("That is not a valid number")
                 print("Please pick between bigger than 1")
-
+    
+    print(num_merch)
+    
     # Choose merch item from menu
-    print("Please choose the merch by entering the number from the catalog menu")
     for item in range(num_merch):
         while num_merch > 0:
-            merch_ordered = int(input())
+            while True:
+                try:
+                    merch_ordered = int(input("Please choose your merchandise items by entering the number on the menu: "))
+                    if merch_ordered >= 1 and merch_ordered <= 13:
+                        break
+                    else:
+                        print("Please make sure you choose an available item that is listed above between 1-13")
+                except ValueError:
+                    print("That is not a valid number")
+                    print("Please enter a number between 1 and 13")
+
+            merch_ordered = merch_ordered - 1
             order_list.append(merch_names[merch_ordered])
             order_cost.append(merch_prices[merch_ordered])
-            num_merch = num_merch-1
+            num_merch = num_merch - 1
+            print("{} ${:.2f}" .format(merch_names[merch_ordered],merch_prices[merch_ordered]))
+
         
 
 # print order
