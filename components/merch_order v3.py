@@ -1,5 +1,5 @@
 #COMPONENT 6
-# VERSION 2
+# VERSION 3
 
 # list of merchandise items available to purchase
 merch_names = ['FEARLESS ALBUM (BLACK PETROL VER)', 'FEARLESS ALBUM (MONOCHROME BOUQUET VER)', 'FEARLESS ALBUM (BLUE CYPHER VER)',
