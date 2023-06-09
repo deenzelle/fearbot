@@ -9,6 +9,11 @@ from random import randint  # Imports the ability to choose between integers ran
 # Creates the customer detail dictionary to have memory of user input of details
 customer_details = {}
 
+# list to store ordered merch items
+order_list = []
+# list to store ordered merch prices
+order_cost = []
+
 # List of names
 names = ["Kazuha", "Chaewon", "Nicole", "Kaitlin", "Denzelle",
          "Yunjin", "Eunchae", "Jaehyun", "Jungkook", "Sakura"]
@@ -149,12 +154,51 @@ def click_collect_info():
     # print (customer_details['phone'])
 
 # Make a menu of at least 12 items for the user to choose from
-# Make each item available item orderable
-# Make the cost of each item display within the catalog menu
 def catalog():
     number_merch = 13
     for count in range (number_merch):
         print("{} {} ${:.2f}" .format(count+1,merch_names[count],merch_prices[count]))
+        
+# Allows the user to pick and choose the items they wish to order
+def order_merch():
+    # ask for the total amount of merchandise for order
+    num_merch = 0
+    # Creates a while true loop to make sure that integer is valid and not a value error
+    while True:
+            try:
+                num_merch = int(input("How many merch pieces would you like to order today?: "))
+                if num_merch >= 1 and num_merch <= 5: 
+                    order_cost.append(9)
+                    break
+                elif num_merch >= 6 and num_merch <= 15:
+                    break
+                else:
+                    print("Please only choose between 1 and 15 merch items to order")
+
+            except ValueError:
+                print("That is not a valid number")
+                print("Please pick between bigger than 1")    
+    print(num_merch)
+    
+    # Choose merch item from menu
+    for item in range(num_merch):
+        while num_merch > 0:
+            while True:
+                try:
+                    merch_ordered = int(input("Please choose your merchandise items by entering the number on the menu: "))
+                    if merch_ordered >= 1 and merch_ordered <= 13:
+                        break
+                    else:
+                        print("Please make sure you choose an available item that is listed above between 1-13")
+                except ValueError:
+                    print("That is not a valid number")
+                    print("Please enter a number between 1 and 13")
+
+            merch_ordered = merch_ordered - 1
+            order_list.append(merch_names[merch_ordered])
+            order_cost.append(merch_prices[merch_ordered])
+            num_merch = num_merch - 1
+            print("{} ${:.2f}" .format(merch_names[merch_ordered],merch_prices[merch_ordered]))
 
 # Prints out order details
 # Items & Prices
@@ -180,6 +224,7 @@ def main():
     welcome()
     order_type()
     catalog()
+    order_merch()
 
 
 main()  # Runs the main function
