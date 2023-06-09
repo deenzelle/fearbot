@@ -168,7 +168,7 @@ def order_merch():
             try:
                 num_merch = int(input("How many merch pieces would you like to order today?: "))
                 if num_merch >= 1 and num_merch <= 5: 
-                    order_cost.append(9)
+                    # order_cost.append(9)
                     break
                 elif num_merch >= 6 and num_merch <= 15:
                     break
@@ -203,6 +203,10 @@ def order_merch():
 # Prints out order details
 # Items & Prices
 # Total cost of order, incl delivery charge (if applicable)
+#purely just to check if something works so future me can come back to it
+# count = 0
+# total_cost = sum(order_cost)
+# print(f"The total cost: ${total_cost:.2f}")
 # Customer's name
 # Customer's phone number
 # (IF ORDER IS FOR DELIVERY) Print out customer's address
@@ -228,3 +232,7 @@ def main():
 
 
 main()  # Runs the main function
+
+count = 0
+total_cost = sum(order_cost)
+print(f"The total cost: ${total_cost:.2f}")
