@@ -168,7 +168,7 @@ def order_merch():
             try:
                 num_merch = int(input("How many merch pieces would you like to order today?: "))
                 if num_merch >= 1 and num_merch <= 5: 
-                    # order_cost.append(9)
+                    # order_cost.append(9) fix smth here
                     break
                 elif num_merch >= 6 and num_merch <= 15:
                     break
