@@ -171,7 +171,6 @@ def order_merch():
     num_merch = 0
 
     # Creates a while true loop to make sure that integer is valid and not a value error
-    # Creates a while true loop to make sure that integer is valid and not a value error
     while True:
             try:
                 num_merch = int(input("How many merch pieces would you like to order today?: "))
@@ -241,8 +240,6 @@ def print_order(del_click):
 # if order is for pickup, notify the user that they will receive a text message when order is ready once confirmed
 
 # Calls the function/Tells the program to run a specific function
-
-
 def main():
     '''
     Purpose: To run all functions
