@@ -82,23 +82,28 @@ def order_type():  # Defines a new function for the order type
     Parameters: None
     Returns: None
     '''
+    del_click = ""
     # Asks the user how they would prefer to have their order handled
     print("Do you want your order delivered or are you planning to click & collect?")
     # Clearly states what the user has to enter to proceed with their order
     print("To select delivery enter '1'")
     # Clearly states what the user has to enter to proceed with their order
     print("To select Click & Collect enter '2'")
+    print("Please note that if delivery is selected, a $9 delivery charge will be added to total cost if 5 or less items are ordered")
+    print("otherwise delivery is free :)")
     while True:  # Creates a loop where while it is 'True', the program will continually ask the user to input either 1 or 2
         try:
             # Sets the delivery variable to the integer inputted (ideally it should be either 1 or 2)
             delivery = int(input())
             if delivery >= 1 and delivery <= 2:  # Checks to see if the number is greater than or equal to 1, or less than or equal to 2
                 if delivery == 1:  # Checks to see if the input entered is '1', if so, the program will print 'Delivery' then break out of loop
+                    del_click = "delivery"
                     delivery_info()
                     break  # Breaks out of loop to progress with program
 
                 elif delivery == 2:  # Checks to see if the input entered is '2', if so, the program will print 'Click and Collect' then break out of loop
                     # If' '2' is inputted, the program will progress onto the click_collect() function
+                    del_click = "click"
                     click_collect_info()
                     break  # Breaks out of loop to progress with program
 
@@ -111,6 +116,7 @@ def order_type():  # Defines a new function for the order type
             print("That is not a valid number")
             # Clearly states what the user has to enter to proceed with their order
             print("Please pick between 1 (Delivery) or 2 (Click and Collect)")
+    return del_click
 
 
 # Collects the user's name, address and phone number if order is intended for delivery
@@ -163,12 +169,13 @@ def catalog():
 def order_merch():
     # ask for the total amount of merchandise for order
     num_merch = 0
+
+    # Creates a while true loop to make sure that integer is valid and not a value error
     # Creates a while true loop to make sure that integer is valid and not a value error
     while True:
             try:
                 num_merch = int(input("How many merch pieces would you like to order today?: "))
                 if num_merch >= 1 and num_merch <= 5: 
-                    # order_cost.append(9) fix smth here
                     break
                 elif num_merch >= 6 and num_merch <= 15:
                     break
@@ -199,17 +206,34 @@ def order_merch():
             order_cost.append(merch_prices[merch_ordered])
             num_merch = num_merch - 1
             print("{} ${:.2f}" .format(merch_names[merch_ordered],merch_prices[merch_ordered]))
+            
+
 
 # Prints out order details
-# Items & Prices
-# Total cost of order, incl delivery charge (if applicable)
-#purely just to check if something works so future me can come back to it
-# count = 0
-# total_cost = sum(order_cost)
-# print(f"The total cost: ${total_cost:.2f}")
-# Customer's name
-# Customer's phone number
-# (IF ORDER IS FOR DELIVERY) Print out customer's address
+def print_order(del_click):
+    print()
+    total_cost = sum(order_cost)
+    delivery_cost = 0 if len(order_list) >= 5 else 9
+    print("Customer Details:")
+    if del_click == "click":
+        print("Your order is will be available for Click and Collect!")
+        print(f"Customer Name: {customer_details['name']} \nCustomer Phone Number: {customer_details['phone']}")
+    elif del_click == "delivery":
+        print("Your order will be delivered to you!")
+        print(f"Customer Name: {customer_details['name']} \nCustomer Phone Number: {customer_details['phone']} \nCustomer Address: {customer_details['house']} {customer_details['street']} {customer_details['suburb']}")
+    count=0
+    print()
+    print("Items in Cart:")
+    for item in order_list:
+        print("Ordered: {}  Cost: ${:.2f}" .format(item, order_cost[count]))
+        count = count + 1
+
+    print()
+    print("Order Cost Details:")
+    print(f"The total cost of the order is: ${total_cost:.2f}")
+    print(f"Delivery Charge: ${delivery_cost:.2f}")
+    total_cost += delivery_cost
+    print(f"Total Cost (including delivery): ${total_cost:.2f}")
 
 # Asks the user if they wish to cancel the order before submitting it
 
@@ -226,13 +250,9 @@ def main():
     Returns: None
     '''
     welcome()
-    order_type()
+    del_click = order_type()
     catalog()
     order_merch()
-
+    print_order(del_click)
 
 main()  # Runs the main function
-
-count = 0
-total_cost = sum(order_cost)
-print(f"The total cost: ${total_cost:.2f}")
