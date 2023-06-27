@@ -7,7 +7,7 @@ print("To cancel your order, enter 2")
 
 while True:
     try:
-        confirm = int(input("Please enter a number "))
+        confirm = int(input("Please enter a number: "))
         if confirm >= 1 and confirm <= 2:
             if confirm == 1:
                 print("Your merch order has been confirmed!")
