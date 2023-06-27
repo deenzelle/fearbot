@@ -10,13 +10,13 @@ while True:
         confirm = int(input("Please enter a number "))
         if confirm >= 1 and confirm <= 2:
             if confirm == 1:
-                print("Your order has been confirmed!")
-                print("Your order will be with you soon!")
+                print("Your merch order has been confirmed!")
+                print("Your merch order will be with you soon!")
                 break
 
             elif confirm == 2:
-                print("Your order has been cancelled")
-                print("You can restart your order or exit the BOT")
+                print("Your merch order has been cancelled")
+                print("You can restart your merch order or exit the BOT")
                 break
         else:
             print("The number must be 1 or 2")
