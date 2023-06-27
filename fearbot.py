@@ -6,6 +6,8 @@
 import random
 from random import randint  # Imports the ability to choose between integers randomly
 
+import sys
+
 # Creates the customer detail dictionary to have memory of user input of details
 customer_details = {}
 
@@ -235,8 +237,64 @@ def print_order(del_click):
     print(f"Total Cost (including delivery): ${total_cost:.2f}")
 
 # Asks the user if they wish to cancel the order before submitting it
+def confirm_cancel():
+    print("Please confirm your order")
+    print("To confirm your order, enter 1")
+    print("To cancel your order, enter 2")
+
+    while True:
+        try:
+            confirm = int(input("Please enter a number: "))
+            if confirm >= 1 and confirm <= 2:
+                if confirm == 1:
+                    print("Your merch order has been confirmed!")
+                    print("Your merch order will be with you soon!")
+                    new_exit()
+                    break
+
+                elif confirm == 2:
+                    print("Your merch order has been cancelled")
+                    print("You can restart your merch order or exit the BOT")
+                    new_exit()
+                    break
+            else:
+                print("The number must be 1 or 2")
+
+        except ValueError:
+            print("That is not a valid number")
+            print("Please enter 1 or 2")
 
 # Ask if user wishes to place another order, or exit the bot
+def new_exit():
+    print("Do you want to start another order or exit the bot?")
+    print("To start another order, enter 1")
+    print("To exit the BOT, enter 2")
+
+    while True:
+        try:
+            confirm = int(input("Please enter a number: "))
+            if confirm >= 1 and confirm <= 2:
+                if confirm == 1:
+                    print("New Order")
+                    order_list.clear()
+                    order_cost = [].clear()
+                    customer_details.clear()
+                    main()
+                    break
+
+                elif confirm == 2:
+                    print("Exit")
+                    order_list.clear()
+                    order_cost = [].clear()
+                    customer_details.clear()
+                    sys.exit()
+                    break
+            else:
+                print("The number must be 1 or 2")
+
+        except ValueError:
+            print("That is not a valid number")
+            print("Please enter 1 or 2")
 # if order is for pickup, notify the user that they will receive a text message when order is ready once confirmed
 
 # Calls the function/Tells the program to run a specific function
