@@ -97,7 +97,10 @@ def welcome():
         |_|   |_____/_/   \_\_| \_\_| \_|\___/ |_|    \____|_____|_| \_| |_| |_| \_\/_/   \_\_____|
         """)
     # Prints out basic welcome message
-    print("*** Welcome to FEARNOT Central")
+    print("""
+          *** 
+          Welcome to FEARNOT Central
+          """)
     print("*** My name is", name)  # Prints out the randomly selected name
     print("*** I will be to help you order OFFICIAL LE SSERAFIM MERCHANDISE")
 
