@@ -8,6 +8,10 @@ from random import randint  # Imports the ability to choose between integers ran
 
 import sys
 
+# constants
+LOW = 1
+HIGH = 2
+
 # Creates the customer detail dictionary to have memory of user input of details
 customer_details = {}
 
@@ -48,9 +52,20 @@ def not_blank(question):
             # Clear instructions
             print("The input you provide cannot be blank")
 
+# Defines a function, which validates inputs to check if they are an integer            
+def val_int(low, high, question):
+    while True:
+        try:
+            num = int(input(question))
+            if num >= low and num <= high:
+                return num
+            else:
+                print(f"Enter a number between {low} and {high}")               
+        except ValueError:
+            print("That is not a valid number")
+            print(f"Enter a number between {low} and {high}")
+
 # Defines a welcome function that welcomes the customer to the bot
-
-
 def welcome():
     '''
     Purpose: To generate a random name from the list and print out 
@@ -85,39 +100,22 @@ def order_type():  # Defines a new function for the order type
     Returns: None
     '''
     del_click = ""
-    # Asks the user how they would prefer to have their order handled
+    question = (f"Enter a number between {LOW} and {HIGH}: ")
     print("Do you want your order delivered or are you planning to click & collect?")
-    # Clearly states what the user has to enter to proceed with their order
     print("To select delivery enter '1'")
-    # Clearly states what the user has to enter to proceed with their order
     print("To select Click & Collect enter '2'")
-    print("Please note that if delivery is selected, a $9 delivery charge will be added to total cost if 5 or less items are ordered")
-    print("otherwise delivery is free :)")
-    while True:  # Creates a loop where while it is 'True', the program will continually ask the user to input either 1 or 2
-        try:
-            # Sets the delivery variable to the integer inputted (ideally it should be either 1 or 2)
-            delivery = int(input())
-            if delivery >= 1 and delivery <= 2:  # Checks to see if the number is greater than or equal to 1, or less than or equal to 2
-                if delivery == 1:  # Checks to see if the input entered is '1', if so, the program will print 'Delivery' then break out of loop
-                    del_click = "delivery"
-                    delivery_info()
-                    break  # Breaks out of loop to progress with program
+    print("Please note that if delivery is selected, a $9 delivery charge will be added to total cost if 5 or less items are ordered otherwise delivery is free :)")
+    delivery = val_int(LOW, HIGH, question)
+    if delivery == 1:
+            print("You have chosen to have your order delivered to your door!")
+            del_click = "delivery"
+            delivery_info()
 
-                elif delivery == 2:  # Checks to see if the input entered is '2', if so, the program will print 'Click and Collect' then break out of loop
-                    # If' '2' is inputted, the program will progress onto the click_collect() function
-                    del_click = "click"
-                    click_collect_info()
-                    break  # Breaks out of loop to progress with program
-
-            else:  # If the input was not one of those two, the program will print this message
-                # Clearly states what the user has to enter to proceed with their order
-                print("Please pick between 1 (Delivery) or 2 (Click and Collect)")
-
-        except ValueError:  # If input = ValueError, prints following error message
-            # Only allows numbers to be a valid input
-            print("That is not a valid number")
-            # Clearly states what the user has to enter to proceed with their order
-            print("Please pick between 1 (Delivery) or 2 (Click and Collect)")
+    elif delivery == 2:
+            print("You have chosen to click and collect your order from our factories!")
+            del_click = "click"
+            click_collect_info()
+            
     return del_click
 
 
@@ -169,43 +167,26 @@ def catalog():
         
 # Allows the user to pick and choose the items they wish to order
 def order_merch():
-    # ask for the total amount of merchandise for order
     num_merch = 0
-
-    # Creates a while true loop to make sure that integer is valid and not a value error
-    while True:
-            try:
-                num_merch = int(input("How many merch pieces would you like to order today?: "))
-                if num_merch >= 1 and num_merch <= 5: 
-                    break
-                elif num_merch >= 6 and num_merch <= 15:
-                    break
-                else:
-                    print("Please only choose between 1 and 15 merch items to order")
-
-            except ValueError:
-                print("That is not a valid number")
-                print("Please pick between bigger than 1")    
-    print(num_merch)
+    NUM_LOW = 1
+    NUM_HIGH = 15
+    CATALOG_LOW = 1
+    CATALOG_HIGH = 13
+    question = (f"Enter a number between {NUM_LOW} and {NUM_HIGH}: ")
+    print("How many pieces of merchandise would you like to order?")
+    num_merch = val_int(NUM_LOW, NUM_HIGH, question)
     
-    # Choose merch item from menu
+    #Choosing merch item
     for item in range(num_merch):
         while num_merch > 0:
-            while True:
-                try:
-                    merch_ordered = int(input("Please choose your merchandise items by entering the number on the menu: "))
-                    if merch_ordered >= 1 and merch_ordered <= 13:
-                        break
-                    else:
-                        print("Please make sure you choose an available item that is listed above between 1-13")
-                except ValueError:
-                    print("That is not a valid number")
-                    print("Please enter a number between 1 and 13")
-
+            print("Please choose your merchandise items by entering the number on the menu: ")
+            question = (f"Enter a number between {CATALOG_LOW} and {CATALOG_HIGH}: ")
+            merch_ordered = val_int(CATALOG_LOW, CATALOG_HIGH, question)
+            
             merch_ordered = merch_ordered - 1
+            num_merch = num_merch - 1
             order_list.append(merch_names[merch_ordered])
             order_cost.append(merch_prices[merch_ordered])
-            num_merch = num_merch - 1
             print("{} ${:.2f}" .format(merch_names[merch_ordered],merch_prices[merch_ordered]))
             
 
@@ -238,63 +219,45 @@ def print_order(del_click):
 
 # Asks the user if they wish to cancel the order before submitting it
 def confirm_cancel():
+    print()
+    question = (f"Enter a number between {LOW} and {HIGH}: ")
     print("Please confirm your order")
     print("To confirm your order, enter 1")
     print("To cancel your order, enter 2")
+    confirm = val_int(LOW, HIGH, question)
+    if confirm == 1:
+        print("Your merch order has been confirmed!")
+        print("Your merch order will be with you soon!")
+        new_exit()
 
-    while True:
-        try:
-            confirm = int(input("Please enter a number: "))
-            if confirm >= 1 and confirm <= 2:
-                if confirm == 1:
-                    print("Your merch order has been confirmed!")
-                    print("Your merch order will be with you soon!")
-                    new_exit()
-                    break
-
-                elif confirm == 2:
-                    print("Your merch order has been cancelled")
-                    print("You can restart your merch order or exit the BOT")
-                    new_exit()
-                    break
-            else:
-                print("The number must be 1 or 2")
-
-        except ValueError:
-            print("That is not a valid number")
-            print("Please enter 1 or 2")
+    elif confirm == 2:
+        print("Your merch order has been cancelled")
+        print("You can restart your merch order or exit the BOT")
+        new_exit()
 
 # Ask if user wishes to place another order, or exit the bot
 def new_exit():
+    print()
+    question = (f"Enter a number between {LOW} and {HIGH}: ")
     print("Do you want to start another order or exit the bot?")
     print("To start another order, enter 1")
     print("To exit the BOT, enter 2")
+    confirm = val_int(LOW, HIGH, question)
+    if confirm == 1:
+        print("New Order")
+        order_list.clear()
+        order_cost = [].clear()
+        customer_details.clear()
+        main()
 
-    while True:
-        try:
-            confirm = int(input("Please enter a number: "))
-            if confirm >= 1 and confirm <= 2:
-                if confirm == 1:
-                    print("New Order")
-                    order_list.clear()
-                    order_cost = [].clear()
-                    customer_details.clear()
-                    main()
-                    break
+    elif confirm == 2:
+        print("If your order was for Click & Collect, you will receive a text message from our factories soon! ")
+        print("Exit")
+        order_list.clear()
+        order_cost = [].clear()
+        customer_details.clear()
+        sys.exit()
 
-                elif confirm == 2:
-                    print("Exit")
-                    order_list.clear()
-                    order_cost = [].clear()
-                    customer_details.clear()
-                    sys.exit()
-                    break
-            else:
-                print("The number must be 1 or 2")
-
-        except ValueError:
-            print("That is not a valid number")
-            print("Please enter 1 or 2")
 # if order is for pickup, notify the user that they will receive a text message when order is ready once confirmed
 
 # Calls the function/Tells the program to run a specific function
