@@ -51,6 +51,17 @@ def not_blank(question):
         else:
             # Clear instructions
             print("The input you provide cannot be blank")
+            
+# checks string to only contain letters
+def check_string(question):
+    while True:
+        response = input(question)
+        x = response.isalpha()
+        if x == False:
+            print("Input must only contain letters")
+        else:
+            print(response.title())
+            break
 
 # Defines a function, which validates inputs to check if they are an integer            
 def val_int(low, high, question):
@@ -123,7 +134,7 @@ def order_type():  # Defines a new function for the order type
 def delivery_info():
     # Basic instructions for asking name
     question = ("Please enter your name: ")
-    customer_details['name'] = not_blank(question)
+    customer_details['name'] = check_string(question)
     # print(customer_details['name'])
 
     # Basic instructions for asking for user's phone number
@@ -136,11 +147,11 @@ def delivery_info():
     # print(customer_details['house'])
 
     question = ("Please enter your street name: ")
-    customer_details['street'] = not_blank(question)
+    customer_details['street'] = check_string(question)
     # print(customer_details['street'])
 
     question = ("Please enter your suburb: ")
-    customer_details['suburb'] = not_blank(question)
+    customer_details['suburb'] = check_string(question)
     # print(customer_details['suburb'])
 
 
@@ -151,7 +162,7 @@ def click_collect_info():
     print("Please provide your name and phone number so we know how to contact you!")
     # Basic instructions for asking name
     question = ("Please enter your name: ")
-    customer_details['name'] = not_blank(question)
+    customer_details['name'] = check_string(question)
     # print (customer_details['name'])
 
     # Basic instructions for asking for user's phone number
