@@ -11,6 +11,8 @@ import sys
 # constants
 LOW = 1
 HIGH = 2
+PH_LOW = 7
+PH_HIGH = 10
 
 # Creates the customer detail dictionary to have memory of user input of details
 customer_details = {}
@@ -60,8 +62,22 @@ def check_string(question):
         if x == False:
             print("Input must only contain letters")
         else:
+            return response.title()
             print(response.title())
             break
+
+# Function for validating a phone number 
+def check_phone(question, PH_LOW, PH_HIGH):
+    while True:
+        num = input(question)  # Prompt the user to enter a phone number
+        if num.isdigit():  # Check if the input consists only of digits
+            count = len(num)  # Calculate the length of the input
+            if count >= PH_LOW and count <= PH_HIGH:  # Check if the length is within the desired range
+                return num  # Return the phone number as a string
+            else:
+                print("NZ phone numbers have between 7 and 10 digits")  # Display an error message if the length is not within the desired range
+        else:
+            print("Please only enter integers!")  # Display an error message if the input is not composed of digits
 
 # Defines a function, which validates inputs to check if they are an integer            
 def val_int(low, high, question):
@@ -138,11 +154,11 @@ def delivery_info():
     # Basic instructions for asking name
     question = ("Please enter your name: ")
     customer_details['name'] = check_string(question)
-    # print(customer_details['name'])
+    print(customer_details['name'])
 
     # Basic instructions for asking for user's phone number
     question = ("Please enter your phone number: ")
-    customer_details['phone'] = not_blank(question)
+    customer_details['phone'] = check_phone(question, PH_LOW, PH_HIGH)
     # print(customer_details['phone'])
 
     question = ("Please enter your house number: ")
@@ -170,7 +186,7 @@ def click_collect_info():
 
     # Basic instructions for asking for user's phone number
     question = ("Please enter your phone number: ")
-    customer_details['phone'] = not_blank(question)
+    customer_details['phone'] = check_phone(question, PH_LOW, PH_HIGH)
     # print (customer_details['phone'])
 
 # Make a menu of at least 12 items for the user to choose from
@@ -286,5 +302,6 @@ def main():
     catalog()
     order_merch()
     print_order(del_click)
+    confirm_cancel()
 
 main()  # Runs the main function

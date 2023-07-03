@@ -8,8 +8,10 @@ def check_string(question):
         if x == False:
             print("Input must only contain letters")
         else:
-            print(response.title())
+            return response.title()
+            #print(response.title())
             break
         
 question = "please enter your name"
 name = check_string(question)
+print(name)
