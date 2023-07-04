@@ -7,7 +7,7 @@ import random
 from random import randint  # Imports the ability to choose between integers randomly
 
 # Import the sys module for system-related operations and functionality
-import sys 
+import sys
 
 # Constants
 LOW = 1
@@ -24,7 +24,8 @@ order_list = []
 order_cost = []
 
 # List of names
-names = ["Kazuha", "Chaewon", "Nicole", "Kaitlin", "Denzelle", "Yunjin", "Eunchae", "Jaehyun", "Jungkook", "Sakura"]
+names = ["Kazuha", "Chaewon", "Nicole", "Kaitlin", "Denzelle",
+         "Yunjin", "Eunchae", "Jaehyun", "Jungkook", "Sakura"]
 
 # List of merchandise items available to purchase
 merch_names = [
@@ -50,6 +51,8 @@ merch_prices = [
 ]
 
 # Defines a function called not_blank, validates inputs to check if they are blank
+
+
 def not_blank(question):
     '''
     Purpose: Validates user input to ensure it is not blank. If the input is blank, it prompts the user to enter a non-blank value.
@@ -66,7 +69,7 @@ def not_blank(question):
             # Print an error message if the input is blank
             print("The input you provide cannot be blank")
 
-            
+
 # checks string to only contain letters
 def check_string(question):
     '''
@@ -81,11 +84,14 @@ def check_string(question):
         if x == False:  # If the response contains non-alphabetic characters
             print("Input must only contain letters")  # Print an error message
         else:
-            return response.title()  # If the response contains only alphabetic characters, return the title-cased version of the response
-            # print(response.title()) 
+            # If the response contains only alphabetic characters, return the title-cased version of the response
+            return response.title()
+            # print(response.title())
             break
 
-# Function for validating a phone number 
+# Function for validating a phone number
+
+
 def check_phone(question, PH_LOW, PH_HIGH):
     '''
     Purpose: Validates user input as a phone number within a specified range of digit counts.
@@ -102,11 +108,15 @@ def check_phone(question, PH_LOW, PH_HIGH):
             if count >= PH_LOW and count <= PH_HIGH:  # Check if the length is within the desired range
                 return num  # Return the phone number as a string
             else:
-                print("NZ phone numbers have between 7 and 10 digits")  # Display an error message if the length is not within the desired range
+                # Display an error message if the length is not within the desired range
+                print("NZ phone numbers have between 7 and 10 digits")
         else:
-            print("Please only enter integers!")  # Display an error message if the input is not composed of digits
+            # Display an error message if the input is not composed of digits
+            print("Please only enter integers!")
 
-# Defines a function, which validates inputs to check if they are an integer            
+# Defines a function, which validates inputs to check if they are an integer
+
+
 def val_int(LOW, high, question):
     '''
     Purpose: Validates user input as an integer within a specified range.
@@ -122,10 +132,13 @@ def val_int(LOW, high, question):
             if num >= LOW and num <= high:  # Check if the number is within the desired range
                 return num  # Return the number as an integer
             else:
-                print(f"Enter a number between {LOW} and {high}")  # Display an error message if the number is not within the desired range
+                # Display an error message if the number is not within the desired range
+                print(f"Enter a number between {LOW} and {high}")
         except ValueError:
-            print("That is not a valid number")  # Display an error message if the input is not a valid integer
-            print(f"Enter a number between {LOW} and {high}")  # Prompt the user to enter a number again
+            # Display an error message if the input is not a valid integer
+            print("That is not a valid number")
+            # Prompt the user to enter a number again
+            print(f"Enter a number between {LOW} and {high}")
 
 
 # Defines a welcome function that welcomes the customer to the bot
@@ -162,12 +175,14 @@ def order_type():
     Returns: del_click: A string indicating the delivery option chosen ("delivery" for delivery, "click" for click & collect).
     '''
     del_click = ""  # Initializes a variable to store the delivery/click & collect information
-    question = (f"Enter a number between {LOW} and {HIGH}: ")  # Defines the question prompt for selecting delivery or click & collect
+    # Defines the question prompt for selecting delivery or click & collect
+    question = (f"Enter a number between {LOW} and {HIGH}: ")
     print("Do you want your order delivered or are you planning to click & collect?")
     print("To select delivery enter '1'")
     print("To select Click & Collect enter '2'")
     print("Please note that if delivery is selected, a $9 delivery charge will be added to total cost if 5 or less items are ordered otherwise delivery is free :)")
-    delivery = val_int(LOW, HIGH, question)  # Prompts the user to enter a number between 1 and 2 to select delivery or click & collect
+    # Prompts the user to enter a number between 1 and 2 to select delivery or click & collect
+    delivery = val_int(LOW, HIGH, question)
 
     if delivery == 1:
         print("You have chosen to have your order delivered to your door!")
@@ -178,7 +193,6 @@ def order_type():
         print("You have chosen to click and collect your order from our factories!")
         del_click = "click"  # Sets the delivery/click & collect variable to "click"
         click_collect_info()  # Calls a function to begin gathering click & collect information
-            
     return del_click  # Returns the delivery/click & collect information
 
 
@@ -191,26 +205,30 @@ def delivery_info():
     '''
     # Basic instructions for asking name
     question = ("Please enter your name: ")
-    customer_details['name'] = check_string(question)  # Asks for the customer's name and stores it in the customer_details dictionary under the 'name' key
+    # Asks for the customer's name and stores it in the customer_details dictionary under the 'name' key
+    customer_details['name'] = check_string(question)
     print(customer_details['name'])  # Prints the customer's name
 
     # Basic instructions for asking for user's phone number
     question = ("Please enter your phone number: ")
-    customer_details['phone'] = check_phone(question, PH_LOW, PH_HIGH)  # Asks for the customer's phone number and stores it in the customer_details dictionary under the 'phone' key
+    # Asks for the customer's phone number and stores it in the customer_details dictionary under the 'phone' key
+    customer_details['phone'] = check_phone(question, PH_LOW, PH_HIGH)
     # print(customer_details['phone'])  # Prints the customer's phone number
 
     question = ("Please enter your house number: ")
-    customer_details['house'] = not_blank(question)  # Asks for the customer's house number and stores it in the customer_details dictionary under the 'house' key
+    # Asks for the customer's house number and stores it in the customer_details dictionary under the 'house' key
+    customer_details['house'] = not_blank(question)
     # print(customer_details['house'])  # Prints the customer's house number
 
     question = ("Please enter your street name: ")
-    customer_details['street'] = check_string(question)  # Asks for the customer's street name and stores it in the customer_details dictionary under the 'street' key
+    # Asks for the customer's street name and stores it in the customer_details dictionary under the 'street' key
+    customer_details['street'] = check_string(question)
     # print(customer_details['street'])  # Prints the customer's street name
 
     question = ("Please enter your suburb: ")
-    customer_details['suburb'] = check_string(question)  # Asks for the customer's suburb and stores it in the customer_details dictionary under the 'suburb' key
+    # Asks for the customer's suburb and stores it in the customer_details dictionary under the 'suburb' key
+    customer_details['suburb'] = check_string(question)
     # print(customer_details['suburb'])  # Prints the customer's suburb
-
 
 
 # Collects the user's name and phone number if order was intended for click and collect
@@ -226,12 +244,14 @@ def click_collect_info():
 
     # Basic instructions for asking name
     question = ("Please enter your name: ")
-    customer_details['name'] = check_string(question)  # Asks for the customer's name and stores it in the customer_details dictionary under the 'name' key
+    # Asks for the customer's name and stores it in the customer_details dictionary under the 'name' key
+    customer_details['name'] = check_string(question)
     # print(customer_details['name'])  # Prints the customer's name
 
     # Basic instructions for asking for user's phone number
     question = ("Please enter your phone number: ")
-    customer_details['phone'] = check_phone(question, PH_LOW, PH_HIGH)  # Asks for the customer's phone number and stores it in the customer_details dictionary under the 'phone' key
+    # Asks for the customer's phone number and stores it in the customer_details dictionary under the 'phone' key
+    customer_details['phone'] = check_phone(question, PH_LOW, PH_HIGH)
     # print(customer_details['phone'])  # Prints the customer's phone number
 
 
@@ -245,9 +265,10 @@ def catalog():
     number_merch = 13  # Total number of merchandise items
     for count in range(number_merch):
         # Prints the item number, merchandise name, and price in a formatted string
-        print("{} {} ${:.2f}".format(count + 1, merch_names[count], merch_prices[count]))
+        print("{} {} ${:.2f}".format(
+            count + 1, merch_names[count], merch_prices[count]))
 
-        
+
 # AlLOWs the user to pick and choose the items they wish to order
 def order_merch():
     '''
@@ -260,28 +281,32 @@ def order_merch():
     NUM_HIGH = 15  # Highest alLOWed number of merchandise items to order
     CATALOG_LOW = 1  # LOWest alLOWed merchandise item number in the catalog
     CATALOG_HIGH = 13  # Highest alLOWed merchandise item number in the catalog
-    
+
     question = f"Enter a number between {NUM_LOW} and {NUM_HIGH}: "
     print("How many pieces of merchandise would you like to order?")
     num_merch = val_int(NUM_LOW, NUM_HIGH, question)
-    
+
     # Choosing merch item
     for item in range(num_merch):
         while num_merch > 0:  # Repeat the process until the desired number of merchandise items is reached
-            print("Please choose your merchandise items by entering the number on the menu: ")
+            print(
+                "Please choose your merchandise items by entering the number on the menu: ")
             question = f"Enter a number between {CATALOG_LOW} and {CATALOG_HIGH}: "
-            merch_ordered = val_int(CATALOG_LOW, CATALOG_HIGH, question)  # Prompt the user to choose a merchandise item
-            
-            merch_ordered = merch_ordered - 1  # Adjust the merchandise item index to match the list index
+            # Prompt the user to choose a merchandise item
+            merch_ordered = val_int(CATALOG_LOW, CATALOG_HIGH, question)
+
+            # Adjust the merchandise item index to match the list index
+            merch_ordered = merch_ordered - 1
             num_merch = num_merch - 1  # Decrease the remaining number of merchandise items to order
-            
-            order_list.append(merch_names[merch_ordered])  # Add the selected merchandise item to the order list
-            order_cost.append(merch_prices[merch_ordered])  # Add the corresponding price of the merchandise item to the order cost list
-            
-            print("{} ${:.2f}".format(merch_names[merch_ordered], merch_prices[merch_ordered]))  # Print the selected item and its price
 
+            # Add the selected merchandise item to the order list
+            order_list.append(merch_names[merch_ordered])
+            # Add the corresponding price of the merchandise item to the order cost list
+            order_cost.append(merch_prices[merch_ordered])
 
-            
+            # Print the selected item and its price
+            print("{} ${:.2f}".format(
+                merch_names[merch_ordered], merch_prices[merch_ordered]))
 
 
 # Prints out order details
@@ -291,31 +316,48 @@ def print_order(del_click):
     Parameters: del_click: Indicates the delivery option chosen by the customer ("click" for Click & Collect, "delivery" for delivery).
     Returns: None
     '''
-    print() # Prints an empty line for better readability and separation.
-    total_cost = sum(order_cost) # Calculates the total cost of the order by summing up all the costs in the order_cost list
-    delivery_cost = 0 if len(order_list) >= 5 else 9 # Determines the delivery cost based on the length of the order_list. If the number of items in the order is 5 or more, the delivery cost is 0; otherwise, it is 9
-    print("Customer Details:") # Prints a header for the customer details section.
-    if del_click == "click": # Checks if the delivery option is "click" (Click & Collect)
+    print()  # Prints an empty line for better readability and separation.
+    # Calculates the total cost of the order by summing up all the costs in the order_cost list
+    total_cost = sum(order_cost)
+    # Determines the delivery cost based on the length of the order_list. If the number of items in the order is 5 or more, the delivery cost is 0; otherwise, it is 9
+    delivery_cost = 0 if len(order_list) >= 5 else 9
+    # Prints a header for the customer details section.
+    print("Customer Details:")
+    # Checks if the delivery option is "click" (Click & Collect)
+    if del_click == "click":
         print("Your order is will be available for Click and Collect!")
-        print(f"Customer Name: {customer_details['name']} \nCustomer Phone Number: {customer_details['phone']}") # Prints the customer's name and phone number
-    elif del_click == "delivery": # Checks if the delivery option is "delivery"
+        # Prints the customer's name and phone number
+        print(
+            f"Customer Name: {customer_details['name']} \nCustomer Phone Number: {customer_details['phone']}")
+    elif del_click == "delivery":  # Checks if the delivery option is "delivery"
         print("Your order will be delivered to you!")
-        print(f"Customer Name: {customer_details['name']} \nCustomer Phone Number: {customer_details['phone']} \nCustomer Address: {customer_details['house']} {customer_details['street']} {customer_details['suburb']}") # Prints the customer's name, phone number, and address for delivery.
-    count=0
-    print() # Prints an empty line for better readability and separation.
-    print("Items in Cart:") # Prints a header for the items in the cart section.
+        # Prints the customer's name, phone number, and address for delivery.
+        print(
+            f"Customer Name: {customer_details['name']} \nCustomer Phone Number: {customer_details['phone']} \nCustomer Address: {customer_details['house']} {customer_details['street']} {customer_details['suburb']}")
+    count = 0
+    print()  # Prints an empty line for better readability and separation.
+    # Prints a header for the items in the cart section.
+    print("Items in Cart:")
     for item in order_list:
-        print("Ordered: {}  Cost: ${:.2f}" .format(item, order_cost[count])) # Prints the ordered item and its corresponding cost
-        count = count + 1 # Increments the counter variable for the next iteration.
+        # Prints the ordered item and its corresponding cost
+        print("Ordered: {}  Cost: ${:.2f}" .format(item, order_cost[count]))
+        # Increments the counter variable for the next iteration.
+        count = count + 1
 
     print()
-    print("Order Cost Details:") # Prints a header for the order cost details section
-    print(f"The total cost of the order is: ${total_cost:.2f}") # Prints the total cost of the order
-    print(f"Delivery Charge: ${delivery_cost:.2f}") 
-    total_cost += delivery_cost # Adds the delivery cost to the total cost (IF APPLICABLE)
-    print(f"Total Cost (including delivery): ${total_cost:.2f}") # # Adds the delivery cost to the total cost (IF APPLICABLE)
+    # Prints a header for the order cost details section
+    print("Order Cost Details:")
+    # Prints the total cost of the order
+    print(f"The total cost of the order is: ${total_cost:.2f}")
+    print(f"Delivery Charge: ${delivery_cost:.2f}")
+    # Adds the delivery cost to the total cost (IF APPLICABLE)
+    total_cost += delivery_cost
+    # Adds the delivery cost to the total cost (IF APPLICABLE)
+    print(f"Total Cost (including delivery): ${total_cost:.2f}")
 
 # Asks the user if they wish to cancel the order before submitting it
+
+
 def confirm_cancel():
     '''   
     Purpose: Prompt the user to confirm or cancel an order and take appropriate actions based on the user's input.
@@ -344,6 +386,8 @@ def confirm_cancel():
         new_exit()  # Exit the program or proceed to the next step
 
 # Ask if user wishes to place another order, or exit the bot
+
+
 def new_exit():
     '''
     Purpose: Starts a new order or exits the bot based on user input. It clears the necessary data and invokes the appropriate actions based on the user's choice.
@@ -370,7 +414,8 @@ def new_exit():
         main()
     elif confirm == 2:
         # Exit the bot
-        print("If your order was for Click & Collect, you will receive a text message from our factories soon! ") # if order is for pickup, notify the user that they will receive a text message when order is ready once confirmed
+        # if order is for pickup, notify the user that they will receive a text message when order is ready once confirmed
+        print("If your order was for Click & Collect, you will receive a text message from our factories soon! ")
         print("Exit")
         # Clear the order list, order cost list, and customer details dictionary
         order_list.clear()
@@ -380,6 +425,8 @@ def new_exit():
         sys.exit()
 
 # Calls the function/Tells the program to run a specific function
+
+
 def main():
     '''
     Purpose: To run all functions
@@ -398,6 +445,7 @@ def main():
     print_order(del_click)
     # Call the confirm_cancel function to confirm or cancel the order
     confirm_cancel()
+
 
 # Run the main function to start the program
 main()
