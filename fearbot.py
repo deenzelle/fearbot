@@ -79,15 +79,12 @@ def check_string(question):
     Returns: The validated string as a title-cased version if it consists only of alphabetic characters. ( response.title() )
     '''
     while True:
-        response = input(question)  # Prompt the user to enter a response
-        x = response.isalpha()  # Check if the response contains only alphabetic characters
-        if x == False:  # If the response contains non-alphabetic characters
-            print("Input must only contain letters")  # Print an error message
-        else:
-            # If the response contains only alphabetic characters, return the title-cased version of the response
+        response = input(question)
+        if response.replace(' ', '').isalpha():
             return response.title()
-            # print(response.title())
             break
+        else:
+            print("Input must only contain letters")
 
 # Function for validating a phone number
 
