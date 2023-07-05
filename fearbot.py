@@ -210,22 +210,22 @@ def delivery_info():
     question = ("Please enter your phone number: ")
     # Asks for the customer's phone number and stores it in the customer_details dictionary under the 'phone' key
     customer_details['phone'] = check_phone(question, PH_LOW, PH_HIGH)
-    # print(customer_details['phone'])  # Prints the customer's phone number
+    print(customer_details['phone'])  # Prints the customer's phone number
 
     question = ("Please enter your house number: ")
     # Asks for the customer's house number and stores it in the customer_details dictionary under the 'house' key
     customer_details['house'] = not_blank(question)
-    # print(customer_details['house'])  # Prints the customer's house number
+    print(customer_details['house'])  # Prints the customer's house number
 
     question = ("Please enter your street name: ")
     # Asks for the customer's street name and stores it in the customer_details dictionary under the 'street' key
     customer_details['street'] = check_string(question)
-    # print(customer_details['street'])  # Prints the customer's street name
+    print(customer_details['street'])  # Prints the customer's street name
 
     question = ("Please enter your suburb: ")
     # Asks for the customer's suburb and stores it in the customer_details dictionary under the 'suburb' key
     customer_details['suburb'] = check_string(question)
-    # print(customer_details['suburb'])  # Prints the customer's suburb
+    print(customer_details['suburb'])  # Prints the customer's suburb
 
 
 # Collects the user's name and phone number if order was intended for click and collect
@@ -236,20 +236,20 @@ def click_collect_info():
     Returns: None
     '''
     # Asks the user to provide Click & Collect information (NAME AND PHONE NUMBER)
-    print("You have chosen to use our Click & Collect service")
     print("Please provide your name and phone number so we know how to contact you!")
 
     # Basic instructions for asking name
     question = ("Please enter your name: ")
     # Asks for the customer's name and stores it in the customer_details dictionary under the 'name' key
     customer_details['name'] = check_string(question)
-    # print(customer_details['name'])  # Prints the customer's name
+    print(customer_details['name']) # Prints the customer's name
 
     # Basic instructions for asking for user's phone number
     question = ("Please enter your phone number: ")
     # Asks for the customer's phone number and stores it in the customer_details dictionary under the 'phone' key
     customer_details['phone'] = check_phone(question, PH_LOW, PH_HIGH)
-    # print(customer_details['phone'])  # Prints the customer's phone number
+    print(customer_details['phone'])  # Prints the customer's phone number
+    print()
 
 
 # Make a menu of at least 12 items for the user to choose from
@@ -260,6 +260,7 @@ def catalog():
     Returns: None
     '''
     number_merch = 13  # Total number of merchandise items
+    print("CATALOG:")
     for count in range(number_merch):
         # Prints the item number, merchandise name, and price in a formatted string
         print("{} {} ${:.2f}".format(
