@@ -260,6 +260,7 @@ def catalog():
     Returns: None
     '''
     number_merch = 13  # Total number of merchandise items
+    print()
     print("CATALOG:")
     for count in range(number_merch):
         # Prints the item number, merchandise name, and price in a formatted string
