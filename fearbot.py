@@ -242,7 +242,7 @@ def click_collect_info():
     question = ("Please enter your name: ")
     # Asks for the customer's name and stores it in the customer_details dictionary under the 'name' key
     customer_details['name'] = check_string(question)
-    print(customer_details['name']) # Prints the customer's name
+    print(customer_details['name'])  # Prints the customer's name
 
     # Basic instructions for asking for user's phone number
     question = ("Please enter your phone number: ")
