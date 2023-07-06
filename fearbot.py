@@ -80,15 +80,16 @@ def check_string(question):
     '''
     while True:
         response = input(question)
-        if response.replace(' ', '').isalpha():
-            return response.title()
-            break
-        else:
+        x = response.isalpha()
+        if x == False:
             print("Input must only contain letters")
+        else:
+            return response.title()
+            #print(response.title())
+            break
 
-# Function for validating a phone number
 
-
+# phone number validation string
 def check_phone(question, PH_LOW, PH_HIGH):
     '''
     Purpose: Validates user input as a phone number within a specified range of digit counts.
@@ -96,20 +97,26 @@ def check_phone(question, PH_LOW, PH_HIGH):
     - question: The prompt message asking the user to enter a phone number.
     - PH_LOW: The lower boundary of the desired range.
     - PH_HIGH: The upper boundary of the desired range.
-    Returns: The validated phone number as a string if it consists of digits and its length is within the specified range. (num)
+    Returns: The validated phone number as a string if it consists of digits and its length is within the specified range. str(num)
     '''
     while True:
-        num = input(question)  # Prompt the user to enter a phone number
-        if num.isdigit():  # Check if the input consists only of digits
-            count = len(num)  # Calculate the length of the input
-            if count >= PH_LOW and count <= PH_HIGH:  # Check if the length is within the desired range
-                return num  # Return the phone number as a string
+        try:
+            # Asks the user to enter a phone number as an integer
+            num = int(input(question))
+            test_num = num
+            count = 0
+            while test_num > 0:  # Loops through the digits of the number to count them
+                test_num = test_num // 10  # Removes the last digit from test_num
+                count = count + 1  # Adds 1 to the count
+            if count >= PH_LOW and count <= PH_HIGH:  # Checks if the count of digits is within the specified range
+                return str(num)  # Returns the phone number as a string
             else:
-                # Display an error message if the length is not within the desired range
                 print("NZ phone numbers have between 7 and 10 digits")
-        else:
-            # Display an error message if the input is not composed of digits
+
+        except ValueError:
+            # Prints an error message if a non-integer value is entered
             print("Please only enter integers!")
+
 
 # Defines a function, which validates inputs to check if they are an integer
 
@@ -221,6 +228,11 @@ def delivery_info():
     # Asks for the customer's street name and stores it in the customer_details dictionary under the 'street' key
     customer_details['street'] = check_string(question)
     print(customer_details['street'])  # Prints the customer's street name
+    
+    question = ("Please enter your street type (Place, Drive, Ave, Street etc): ")
+    # Asks for the customer's street name and stores it in the customer_details dictionary under the 'type' key
+    customer_details['type'] = check_string(question)
+    print(customer_details['type'])  # Prints the customer's street type
 
     question = ("Please enter your suburb: ")
     # Asks for the customer's suburb and stores it in the customer_details dictionary under the 'suburb' key
@@ -332,7 +344,7 @@ def print_order(del_click):
         print("Your order will be delivered to you!")
         # Prints the customer's name, phone number, and address for delivery.
         print(
-            f"Customer Name: {customer_details['name']} \nCustomer Phone Number: {customer_details['phone']} \nCustomer Address: {customer_details['house']} {customer_details['street']} {customer_details['suburb']}")
+            f"Customer Name: {customer_details['name']} \nCustomer Phone Number: {customer_details['phone']} \nCustomer Address: {customer_details['house']} {customer_details['street']} {customer_details['type']} {customer_details['suburb']}")
     count = 0
     print()  # Prints an empty line for better readability and separation.
     # Prints a header for the items in the cart section.
