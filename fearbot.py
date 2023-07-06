@@ -115,7 +115,7 @@ def check_phone(question, PH_LOW, PH_HIGH):
 
         except ValueError:
             # Prints an error message if a non-integer value is entered
-            print("Please only enter integers!")
+            print("Please only enter numbers!")
 
 
 # Defines a function, which validates inputs to check if they are an integer
