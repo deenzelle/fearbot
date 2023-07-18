@@ -168,11 +168,11 @@ def welcome():
         |_|   |_____/_/   \_\_| \_\_| \_|\___/ |_|    \____|_____|_| \_| |_| |_| \_\/_/   \_\_____|
         """)
     # Prints out basic welcome message
-    print("*** Welcome to FEARNOT Central")
-    print("*** My name is", name)  # Prints out the randomly selected name
-    print("*** I will be to help you order OFFICIAL LE SSERAFIM MERCHANDISE")
-    print()
-
+    print("\n-------------------------------------------------------------------------")
+    print("                        WELCOME TO FEARNOT CENTRAL                       ")
+    print("                            MY NAME IS", name,"                            ")
+    print("          I WILL BE HERE TO HELP YOU ORDER FROM OUR SERVICES TODAY       ")
+    print("-------------------------------------------------------------------------")
 
 # Asks the user if the order is intended for click and collect or delivery
 def order_type():
@@ -317,7 +317,9 @@ def catalog():
     '''
     number_merch = 13  # Total number of merchandise items
     print()
-    print("CATALOG:")
+    print("\n--------------------------------------------------")
+    print("                LE SSERAFIM MERCH                   ")
+    print("--------------------------------------------------")
     for count in range(number_merch):
         # Prints the item number, merchandise name, and price in a formatted string
         print("{} {} ${:.2f}".format(
@@ -373,44 +375,48 @@ def print_order(del_click):
     Parameters: del_click: Indicates the delivery option chosen by the customer ("click" for Click & Collect, "delivery" for delivery).
     Returns: None
     '''
-    print()  # Prints an empty line for better readability and separation.
-    # Calculates the total cost of the order by summing up all the costs in the order_cost list
-    total_cost = sum(order_cost)
-    # Determines the delivery cost based on the length of the order_list. If the number of items in the order is 5 or more, the delivery cost is 0; otherwise, it is 9
-    delivery_cost = 0 if len(order_list) >= 5 else 9
-    # Prints a header for the customer details section.
-    print("Customer Details:")
-    # Checks if the delivery option is "click" (Click & Collect)
-    if del_click == "click":
-        print("Your order is will be available for Click and Collect!")
-        # Prints the customer's name and phone number
-        print(
-            f"Customer Name: {customer_details['name']} \nCustomer Phone Number: {customer_details['phone']}")
-    elif del_click == "delivery":  # Checks if the delivery option is "delivery"
-        print("Your order will be delivered to you!")
-        # Prints the customer's name, phone number, and address for delivery.
-        print(
-            f"Customer Name: {customer_details['name']} \nCustomer Phone Number: {customer_details['phone']} \nCustomer Address: {customer_details['house']} {customer_details['street']} {customer_details['type']} {customer_details['suburb']}")
     count = 0
-    print()  # Prints an empty line for better readability and separation.
-    # Prints a header for the items in the cart section.
+    delivery_cost = 0 
+    if del_click == "delivery":
+        if len(order_list) < 5:
+            print("It seems your order has 4 or less items in the cart, a $9 delivery charge will be applied")
+            delivery_cost = 9
+            print()
+        else:
+            delivery_cost = 0 
+             
+    print("\n-----------------------------------------------------")
+    print("                   FEARBOT RECEIPT                   ")
+    print("-----------------------------------------------------")
+    print("Customer Details:")
+    if del_click == "click":
+        print("Delivery Option: Click & Collect")
+        print(f"Customer Name: {customer_details['name']}")  # Prints the customer's name
+        print(f"Customer Phone Number: {customer_details['phone']}")  # Prints the customer's phone number
+    elif del_click == "delivery":
+        print("Delivery Option: Delivery")
+        print(f"Customer Name: {customer_details['name']}")  # Prints the customer's name
+        print(f"Customer Phone Number: {customer_details['phone']}")  # Prints the customer's phone number
+        print(f"Customer Address: {customer_details['house']} {customer_details['street']} {customer_details['type']}")
+        print(f"                  {customer_details['suburb']}")  # Prints the customer's address
+    
+    print("-----------------------------------------------------")
     print("Items in Cart:")
+    
     for item in order_list:
         # Prints the ordered item and its corresponding cost
-        print("Ordered: {}  Cost: ${:.2f}" .format(item, order_cost[count]))
+        print("{}  ${:.2f}" .format(item, order_cost[count]))
         # Increments the counter variable for the next iteration.
         count = count + 1
 
-    print()
-    # Prints a header for the order cost details section
-    print("Order Cost Details:")
-    # Prints the total cost of the order
-    print(f"The total cost of the order is: ${total_cost:.2f}")
-    print(f"Delivery Charge: ${delivery_cost:.2f}")
-    # Adds the delivery cost to the total cost (IF APPLICABLE)
-    total_cost += delivery_cost
-    # Adds the delivery cost to the total cost (IF APPLICABLE)
-    print(f"Total Cost (including delivery): ${total_cost:.2f}")
+    print("-----------------------------------------------------")
+    subtotal = sum(order_cost)  # Calculates the subtotal by summing all the costs
+    print(f"Subtotal:                      ${subtotal:.2f}")  # Prints the subtotal
+    print(f"Delivery Charge:               ${delivery_cost:.2f}")  # Prints the delivery charge
+    total_cost = subtotal + delivery_cost  # Calculates the total cost
+    print(f"Total:                         ${total_cost:.2f}")  # Prints the total cost
+    print("-----------------------------------------------------")
+
 
 # Asks the user if they wish to cancel the order before submitting it
 
