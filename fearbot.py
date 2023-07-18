@@ -213,34 +213,40 @@ def delivery_info():
     question = ("Please enter your name: ")
     # Asks for the customer's name and stores it in the customer_details dictionary under the 'name' key
     customer_details['name'] = check_string(question)
-    print(customer_details['name'])  # Prints the customer's name
+    #print(customer_details['name'])  # Prints the customer's name
+    print()
 
     # Basic instructions for asking for user's phone number
     question = ("Please enter your phone number: ")
     # Asks for the customer's phone number and stores it in the customer_details dictionary under the 'phone' key
     customer_details['phone'] = check_phone(question, PH_LOW, PH_HIGH)
-    print(customer_details['phone'])  # Prints the customer's phone number
+    #print(customer_details['phone'])  # Prints the customer's phone number
+    print()
 
     question = ("Please enter your house number: ")
     # Asks for the customer's house number and stores it in the customer_details dictionary under the 'house' key
     customer_details['house'] = not_blank(question)
-    print(customer_details['house'])  # Prints the customer's house number
+    #print(customer_details['house'])  # Prints the customer's house number
+    print()
 
     question = ("Please enter your street name: ")
     # Asks for the customer's street name and stores it in the customer_details dictionary under the 'street' key
     customer_details['street'] = check_string(question)
-    print(customer_details['street'])  # Prints the customer's street name
+    #print(customer_details['street'])  # Prints the customer's street name
+    print()
 
     question = (
         "Please enter your street type (Place, Drive, Ave, Street etc): ")
     # Asks for the customer's street name and stores it in the customer_details dictionary under the 'type' key
     customer_details['type'] = check_string(question)
-    print(customer_details['type'])  # Prints the customer's street type
+    #print(customer_details['type'])  # Prints the customer's street type
+    print()
 
     question = ("Please enter your suburb: ")
     # Asks for the customer's suburb and stores it in the customer_details dictionary under the 'suburb' key
     customer_details['suburb'] = check_string(question)
-    print(customer_details['suburb'])  # Prints the customer's suburb
+    #print(customer_details['suburb'])  # Prints the customer's suburb
+    print()
 
 
 # Collects the user's name and phone number if order was intended for click and collect
@@ -257,13 +263,14 @@ def click_collect_info():
     question = ("Please enter your name: ")
     # Asks for the customer's name and stores it in the customer_details dictionary under the 'name' key
     customer_details['name'] = check_string(question)
-    print(customer_details['name'])  # Prints the customer's name
+    #print(customer_details['name'])  # Prints the customer's name
+    print()
 
     # Basic instructions for asking for user's phone number
     question = ("Please enter your phone number: ")
     # Asks for the customer's phone number and stores it in the customer_details dictionary under the 'phone' key
     customer_details['phone'] = check_phone(question, PH_LOW, PH_HIGH)
-    print(customer_details['phone'])  # Prints the customer's phone number
+    #print(customer_details['phone'])  # Prints the customer's phone number
     print()
 
 
