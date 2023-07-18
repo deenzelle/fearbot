@@ -143,7 +143,6 @@ def print_order(del_click):
 
     print("--------------------------------------------------")
     subtotal = sum(order_cost)  # Calculates the subtotal by summing all the costs
-    total_cost = subtotal + delivery_cost
     print(f"Subtotal:                      ${subtotal:.2f}")  # Prints the subtotal
     print(f"Delivery Charge:               ${delivery_cost:.2f}")  # Prints the delivery charge
     total_cost = subtotal + delivery_cost  # Calculates the total cost
