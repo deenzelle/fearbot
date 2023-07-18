@@ -209,6 +209,7 @@ def delivery_info():
     Parameters: None
     Returns: None
     '''
+    print("Please provide your name, phone number and address so we know where to send the merch to you!")
     # Basic instructions for asking name
     question = ("Please enter your name: ")
     # Asks for the customer's name and stores it in the customer_details dictionary under the 'name' key
@@ -296,6 +297,7 @@ def check_information(del_click):
         print("")
         # Clear the customer details dictionary
         customer_details.clear()
+        del_click = ""
         main()
 
 # Make a menu of at least 12 items for the user to choose from
