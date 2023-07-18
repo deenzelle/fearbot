@@ -170,11 +170,14 @@ def welcome():
     # Prints out basic welcome message
     print("\n-------------------------------------------------------------------------")
     print("                        WELCOME TO FEARNOT CENTRAL                       ")
-    print("                            MY NAME IS", name,"                            ")
+    print("                            MY NAME IS",
+          name, "                            ")
     print("          I WILL BE HERE TO HELP YOU ORDER FROM OUR SERVICES TODAY       ")
     print("-------------------------------------------------------------------------")
 
 # Asks the user if the order is intended for click and collect or delivery
+
+
 def order_type():
     '''
     Purpose: Prompts the user to select between home delivery or click & collect for their order and gathers the corresponding information.
@@ -376,33 +379,39 @@ def print_order(del_click):
     Returns: None
     '''
     count = 0
-    delivery_cost = 0 
+    delivery_cost = 0
     if del_click == "delivery":
         if len(order_list) < 5:
-            print("It seems your order has 4 or less items in the cart, a $9 delivery charge will be applied")
+            print("It seems your order has", len(order_list),
+                  "item/s in the cart, a $9 delivery charge will be applied")
             delivery_cost = 9
-            print()
         else:
-            delivery_cost = 0 
-             
+            delivery_cost = 0
+
     print("\n-----------------------------------------------------")
     print("                   FEARBOT RECEIPT                   ")
     print("-----------------------------------------------------")
     print("Customer Details:")
     if del_click == "click":
         print("Delivery Option: Click & Collect")
-        print(f"Customer Name: {customer_details['name']}")  # Prints the customer's name
-        print(f"Customer Phone Number: {customer_details['phone']}")  # Prints the customer's phone number
+        # Prints the customer's name
+        print(f"Customer Name: {customer_details['name']}")
+        # Prints the customer's phone number
+        print(f"Customer Phone Number: {customer_details['phone']}")
     elif del_click == "delivery":
         print("Delivery Option: Delivery")
-        print(f"Customer Name: {customer_details['name']}")  # Prints the customer's name
-        print(f"Customer Phone Number: {customer_details['phone']}")  # Prints the customer's phone number
-        print(f"Customer Address: {customer_details['house']} {customer_details['street']} {customer_details['type']}")
-        print(f"                  {customer_details['suburb']}")  # Prints the customer's address
-    
+        # Prints the customer's name
+        print(f"Customer Name: {customer_details['name']}")
+        # Prints the customer's phone number
+        print(f"Customer Phone Number: {customer_details['phone']}")
+        print(
+            f"Customer Address: {customer_details['house']} {customer_details['street']} {customer_details['type']}")
+        # Prints the customer's address
+        print(f"                  {customer_details['suburb']}")
+
     print("-----------------------------------------------------")
     print("Items in Cart:")
-    
+
     for item in order_list:
         # Prints the ordered item and its corresponding cost
         print("{}  ${:.2f}" .format(item, order_cost[count]))
@@ -410,11 +419,15 @@ def print_order(del_click):
         count = count + 1
 
     print("-----------------------------------------------------")
-    subtotal = sum(order_cost)  # Calculates the subtotal by summing all the costs
-    print(f"Subtotal:                      ${subtotal:.2f}")  # Prints the subtotal
-    print(f"Delivery Charge:               ${delivery_cost:.2f}")  # Prints the delivery charge
+    # Calculates the subtotal by summing all the costs
+    subtotal = sum(order_cost)
+    # Prints the subtotal
+    print(f"Subtotal:                      ${subtotal:.2f}")
+    # Prints the delivery charge
+    print(f"Delivery Charge:               ${delivery_cost:.2f}")
     total_cost = subtotal + delivery_cost  # Calculates the total cost
-    print(f"Total:                         ${total_cost:.2f}")  # Prints the total cost
+    # Prints the total cost
+    print(f"Total:                         ${total_cost:.2f}")
     print("-----------------------------------------------------")
 
 
