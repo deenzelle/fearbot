@@ -214,34 +214,37 @@ def delivery_info():
     question = ("Please enter your name: ")
     # Asks for the customer's name and stores it in the customer_details dictionary under the 'name' key
     customer_details['name'] = check_string(question)
-    #print(customer_details['name'])  # Prints the customer's name
+    print("> ", customer_details['name'])  # Prints the customer's name
 
     # Basic instructions for asking for user's phone number
     question = ("Please enter your phone number: ")
     # Asks for the customer's phone number and stores it in the customer_details dictionary under the 'phone' key
     customer_details['phone'] = check_phone(question, PH_LOW, PH_HIGH)
-    #print(customer_details['phone'])  # Prints the customer's phone number
+    # Prints the customer's phone number
+    print("> ", customer_details['phone'])
 
     question = ("Please enter your house number: ")
     # Asks for the customer's house number and stores it in the customer_details dictionary under the 'house' key
     customer_details['house'] = not_blank(question)
-    #print(customer_details['house'])  # Prints the customer's house number
+    # Prints the customer's house number
+    print("> ", customer_details['house'])
 
     question = ("Please enter your street name: ")
     # Asks for the customer's street name and stores it in the customer_details dictionary under the 'street' key
     customer_details['street'] = check_string(question)
-    #print(customer_details['street'])  # Prints the customer's street name
+    # Prints the customer's street name
+    print("> ", customer_details['street'])
 
     question = (
         "Please enter your street type (Place, Drive, Ave, Street etc): ")
     # Asks for the customer's street name and stores it in the customer_details dictionary under the 'type' key
     customer_details['type'] = check_string(question)
-    #print(customer_details['type'])  # Prints the customer's street type
+    print("> ", customer_details['type'])  # Prints the customer's street type
 
     question = ("Please enter your suburb: ")
     # Asks for the customer's suburb and stores it in the customer_details dictionary under the 'suburb' key
     customer_details['suburb'] = check_string(question)
-    #print(customer_details['suburb'])  # Prints the customer's suburb
+    print("> ", customer_details['suburb'])  # Prints the customer's suburb
 
 
 # Collects the user's name and phone number if order was intended for click and collect
@@ -258,13 +261,15 @@ def click_collect_info():
     question = ("Please enter your name: ")
     # Asks for the customer's name and stores it in the customer_details dictionary under the 'name' key
     customer_details['name'] = check_string(question)
-    #print(customer_details['name'])  # Prints the customer's name
+    print("> ", customer_details['name'])  # Prints the customer's name
 
     # Basic instructions for asking for user's phone number
     question = ("Please enter your phone number: ")
     # Asks for the customer's phone number and stores it in the customer_details dictionary under the 'phone' key
     customer_details['phone'] = check_phone(question, PH_LOW, PH_HIGH)
-    #print(customer_details['phone'])  # Prints the customer's phone number
+    # Prints the customer's phone number
+    print("> ", customer_details['phone'])
+
 
 def check_information(del_click):
     '''
@@ -301,6 +306,8 @@ def check_information(del_click):
         main()
 
 # Make a menu of at least 12 items for the user to choose from
+
+
 def catalog():
     '''
     Purpose: Displays a catalog of merchandise items with their corresponding item numbers and prices.
@@ -314,6 +321,7 @@ def catalog():
         # Prints the item number, merchandise name, and price in a formatted string
         print("{} {} ${:.2f}".format(
             count + 1, merch_names[count], merch_prices[count]))
+    print()
 
 
 # Allows the user to pick and choose the items they wish to order
@@ -352,8 +360,9 @@ def order_merch():
             order_cost.append(merch_prices[merch_ordered])
 
             # Print the selected item and its price
-            print("{} ${:.2f}".format(
+            print("> {} ${:.2f}".format(
                 merch_names[merch_ordered], merch_prices[merch_ordered]))
+    print()
 
 
 # Prints out order details
