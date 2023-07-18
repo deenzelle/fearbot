@@ -403,7 +403,7 @@ def print_order(del_click):
         # Prints the customer's name
         print(f"Customer Name: {customer_details['name']}")
         # Prints the customer's phone number
-        print(f"Customer Phone Number: {customer_details['phone']}")
+        print(f"Customer Phone Number: +64 {customer_details['phone']}")
         print(
             f"Customer Address: {customer_details['house']} {customer_details['street']} {customer_details['type']}")
         # Prints the customer's address
@@ -434,7 +434,7 @@ def print_order(del_click):
 # Asks the user if they wish to cancel the order before submitting it
 
 
-def confirm_cancel():
+def confirm_cancel(del_click):
     '''   
     Purpose: Prompt the user to confirm or cancel an order and take appropriate actions based on the user's input.
     Parameters: None
@@ -454,20 +454,20 @@ def confirm_cancel():
         # Order confirmation
         print("Your merch order has been confirmed!")
         print("Your merch order will be with you soon!")
-        new_exit()  # Exit the program or proceed to the next step
+        new_exit(del_click)  # Exit the program or proceed to the next step
     elif confirm == 2:
         # Order cancellation
         print("Your merch order has been cancelled")
         print("You can restart your merch order or exit the BOT")
-        new_exit()  # Exit the program or proceed to the next step
+        new_exit(del_click)  # Exit the program or proceed to the next step
 
 # Ask if user wishes to place another order, or exit the bot
 
 
-def new_exit():
+def new_exit(del_click):
     '''
     Purpose: Starts a new order or exits the bot based on user input. It clears the necessary data and invokes the appropriate actions based on the user's choice.
-    Parameters: None
+    Parameters: del_click
     Returns: None
     '''
     print()
@@ -491,7 +491,8 @@ def new_exit():
     elif confirm == 2:
         # Exit the bot
         # if order is for pickup, notify the user that they will receive a text message when order is ready once confirmed
-        print("If your order was for Click & Collect, you will receive a text message from our factories soon! ")
+        if del_click == "click": 
+            print(f"Please wait for an incoming text message to come within the next few days to +64{customer_details['phone']}")
         print("Exit")
         # Clear the order list, order cost list, and customer details dictionary
         order_list.clear()
@@ -513,6 +514,7 @@ def main():
     welcome()
     # Call the order_type function to determine the delivery or click & collect preference
     del_click = order_type()
+    # Call the check_information function to ask user if the details entered are correct before proceeding
     check_information(del_click)
     # Call the catalog function to display the merchandise catalog
     catalog()
@@ -521,7 +523,7 @@ def main():
     # Call the print_order function to display the order details
     print_order(del_click)
     # Call the confirm_cancel function to confirm or cancel the order
-    confirm_cancel()
+    confirm_cancel(del_click)
 
 
 # Run the main function to start the program
