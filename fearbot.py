@@ -79,13 +79,15 @@ def check_string(question):
     Returns: The validated string as a title-cased version if it consists only of alphabetic characters. ( response.title() )
     '''
     while True:
-        response = input(question)
-        x = response.isalpha()
+        response = input(question)  # Asks the user to enter a string
+        x = response.isalpha()  # Checks if the string consists only of alphabetic characters
         if x == False:
+            # Prints an error message if the input contains non-alphabetic characters
             print("Input must only contain letters")
         else:
+            # Returns the string as a title-cased version if it consists only of alphabetic characters
             return response.title()
-            #print(response.title())
+            # print(response.title())
             break
 
 
@@ -228,8 +230,9 @@ def delivery_info():
     # Asks for the customer's street name and stores it in the customer_details dictionary under the 'street' key
     customer_details['street'] = check_string(question)
     print(customer_details['street'])  # Prints the customer's street name
-    
-    question = ("Please enter your street type (Place, Drive, Ave, Street etc): ")
+
+    question = (
+        "Please enter your street type (Place, Drive, Ave, Street etc): ")
     # Asks for the customer's street name and stores it in the customer_details dictionary under the 'type' key
     customer_details['type'] = check_string(question)
     print(customer_details['type'])  # Prints the customer's street type
@@ -280,18 +283,18 @@ def catalog():
             count + 1, merch_names[count], merch_prices[count]))
 
 
-# AlLOWs the user to pick and choose the items they wish to order
+# Allows the user to pick and choose the items they wish to order
 def order_merch():
     '''
-    Purpose: AlLOWs the user to order merchandise items by specifying the quantity and choosing from a catalog.
+    Purpose: Allows the user to order merchandise items by specifying the quantity and choosing from a catalog.
     Parameters: None
     Returns: None
     '''
     num_merch = 0  # Variable to store the number of merchandise items ordered
-    NUM_LOW = 1  # LOWest alLOWed number of merchandise items to order
-    NUM_HIGH = 15  # Highest alLOWed number of merchandise items to order
-    CATALOG_LOW = 1  # LOWest alLOWed merchandise item number in the catalog
-    CATALOG_HIGH = 13  # Highest alLOWed merchandise item number in the catalog
+    NUM_LOW = 1  # Lowest allowed number of merchandise items to order
+    NUM_HIGH = 15  # Highest allowed number of merchandise items to order
+    CATALOG_LOW = 1  # Lowest allowed merchandise item number in the catalog
+    CATALOG_HIGH = 13  # Highest allowed merchandise item number in the catalog
 
     question = f"Enter a number between {NUM_LOW} and {NUM_HIGH}: "
     print("How many pieces of merchandise would you like to order?")
