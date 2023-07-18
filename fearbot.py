@@ -192,12 +192,12 @@ def order_type():
     delivery = val_int(LOW, HIGH, question)
 
     if delivery == 1:
-        print("You have chosen to have your order delivered to your door!")
+        print("> You have chosen to have your order delivered to your door!")
         del_click = "delivery"  # Sets the delivery/click & collect variable to "delivery"
         delivery_info()  # Calls a function to begin gathering delivery information
 
     elif delivery == 2:
-        print("You have chosen to click and collect your order from our factories!")
+        print("> You have chosen to click and collect your order from our factories!")
         del_click = "click"  # Sets the delivery/click & collect variable to "click"
         click_collect_info()  # Calls a function to begin gathering click & collect information
     return del_click  # Returns the delivery/click & collect information
