@@ -214,39 +214,33 @@ def delivery_info():
     # Asks for the customer's name and stores it in the customer_details dictionary under the 'name' key
     customer_details['name'] = check_string(question)
     #print(customer_details['name'])  # Prints the customer's name
-    print()
 
     # Basic instructions for asking for user's phone number
     question = ("Please enter your phone number: ")
     # Asks for the customer's phone number and stores it in the customer_details dictionary under the 'phone' key
     customer_details['phone'] = check_phone(question, PH_LOW, PH_HIGH)
     #print(customer_details['phone'])  # Prints the customer's phone number
-    print()
 
     question = ("Please enter your house number: ")
     # Asks for the customer's house number and stores it in the customer_details dictionary under the 'house' key
     customer_details['house'] = not_blank(question)
     #print(customer_details['house'])  # Prints the customer's house number
-    print()
 
     question = ("Please enter your street name: ")
     # Asks for the customer's street name and stores it in the customer_details dictionary under the 'street' key
     customer_details['street'] = check_string(question)
     #print(customer_details['street'])  # Prints the customer's street name
-    print()
 
     question = (
         "Please enter your street type (Place, Drive, Ave, Street etc): ")
     # Asks for the customer's street name and stores it in the customer_details dictionary under the 'type' key
     customer_details['type'] = check_string(question)
     #print(customer_details['type'])  # Prints the customer's street type
-    print()
 
     question = ("Please enter your suburb: ")
     # Asks for the customer's suburb and stores it in the customer_details dictionary under the 'suburb' key
     customer_details['suburb'] = check_string(question)
     #print(customer_details['suburb'])  # Prints the customer's suburb
-    print()
 
 
 # Collects the user's name and phone number if order was intended for click and collect
@@ -264,15 +258,45 @@ def click_collect_info():
     # Asks for the customer's name and stores it in the customer_details dictionary under the 'name' key
     customer_details['name'] = check_string(question)
     #print(customer_details['name'])  # Prints the customer's name
-    print()
 
     # Basic instructions for asking for user's phone number
     question = ("Please enter your phone number: ")
     # Asks for the customer's phone number and stores it in the customer_details dictionary under the 'phone' key
     customer_details['phone'] = check_phone(question, PH_LOW, PH_HIGH)
     #print(customer_details['phone'])  # Prints the customer's phone number
-    print()
 
+def check_information(del_click):
+    '''
+    Purpose: Asks the user if the information they have entered is correct. If not, the program clears the necessary data and invokes the appropriate actions based on the user's choice.
+    Parameters: del_click
+    Returns: None
+    '''
+    print()
+    # Prompt the user to enter a number between LOW and HIGH for confirmation
+    question = (f"Enter a number between {LOW} and {HIGH}: ")
+    # Display the options to start another order or exit the bot
+    print("Please confirm if the details you have entered are correct")
+    if del_click == "click":
+        print
+        # Prints the customer's name and phone number
+        print(
+            f"Customer Name: {customer_details['name']} \nCustomer Phone Number: {customer_details['phone']}\nOrder type: Click & Collect")
+    elif del_click == "delivery":  # Checks if the delivery option is "delivery"
+        # Prints the customer's name, phone number, and address for delivery.
+        print(
+            f"Customer Name: {customer_details['name']} \nCustomer Phone Number: {customer_details['phone']} \nCustomer Address: {customer_details['house']} {customer_details['street']} {customer_details['type']} {customer_details['suburb']} \nOrder type: Delivery")
+
+    print("To confirm your details and proceed, enter 1")
+    print("To reenter any of the above details, enter 2")
+    # Validate the user's input to choose between starting another order or exiting the bot
+    detailsconfirm = val_int(LOW, HIGH, question)
+    if detailsconfirm == 1:
+        print("Your details have been confirmed with us")
+    elif detailsconfirm == 2:
+        print("")
+        # Clear the customer details dictionary
+        customer_details.clear()
+        main()
 
 # Make a menu of at least 12 items for the user to choose from
 def catalog():
@@ -458,6 +482,7 @@ def main():
     welcome()
     # Call the order_type function to determine the delivery or click & collect preference
     del_click = order_type()
+    check_information(del_click)
     # Call the catalog function to display the merchandise catalog
     catalog()
     # Call the order_merch function to process the merchandise order
