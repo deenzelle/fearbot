@@ -171,6 +171,7 @@ def welcome():
     print("*** Welcome to FEARNOT Central")
     print("*** My name is", name)  # Prints out the randomly selected name
     print("*** I will be to help you order OFFICIAL LE SSERAFIM MERCHANDISE")
+    print()
 
 
 # Asks the user if the order is intended for click and collect or delivery
