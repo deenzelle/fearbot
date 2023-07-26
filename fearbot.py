@@ -6,14 +6,14 @@
 import random
 from random import randint  # Imports the ability to choose between integers randomly
 
-# Import the sys module for system-related operations and functionality
+# Import the sys for system-related operations and functionality
 import sys
 
 # Constants
-LOW = 1
-HIGH = 2
-PH_LOW = 7
-PH_HIGH = 10
+LOW = 1  # Universally sets LOW = 1 for anything requiring the LOW variable
+HIGH = 2  # Universally sets HIGH = 2 for anything requiring the HIGH variable
+PH_LOW = 7  # Sets the minimum number of digits in NZ Standard Phone Number
+PH_HIGH = 10  # Sets the maximum number of digits in a NZ Standard Phone Number
 
 # Creates the customer detail dictionary to have memory of user input of details
 customer_details = {}
@@ -216,37 +216,37 @@ def delivery_info():
     print("Please provide your name, phone number and address so we know where to send the merch to you!")
     # Basic instructions for asking name
     question = ("Please enter your name: ")
-    # Asks for the customer's name and stores it in the customer_details dictionary under the 'name' key
+    # Asks for the customer's name and stores it in the customer_details dictionary under 'name'
     customer_details['name'] = check_string(question)
     print("> ", customer_details['name'])  # Prints the customer's name
 
     # Basic instructions for asking for user's phone number
     question = ("Please enter your phone number: ")
-    # Asks for the customer's phone number and stores it in the customer_details dictionary under the 'phone' key
+    # Asks for the customer's phone number and stores it in the customer_details dictionary under 'phone'
     customer_details['phone'] = check_phone(question, PH_LOW, PH_HIGH)
     # Prints the customer's phone number
     print("> ", customer_details['phone'])
 
     question = ("Please enter your house number: ")
-    # Asks for the customer's house number and stores it in the customer_details dictionary under the 'house' key
+    # Asks for the customer's house number and stores it in the customer_details dictionary under 'house'
     customer_details['house'] = not_blank(question)
     # Prints the customer's house number
     print("> ", customer_details['house'])
 
     question = ("Please enter your street name: ")
-    # Asks for the customer's street name and stores it in the customer_details dictionary under the 'street' key
+    # Asks for the customer's street name and stores it in the customer_details dictionary under 'street'
     customer_details['street'] = check_string(question)
     # Prints the customer's street name
     print("> ", customer_details['street'])
 
     question = (
         "Please enter your street type (Place, Drive, Ave, Street etc): ")
-    # Asks for the customer's street name and stores it in the customer_details dictionary under the 'type' key
+    # Asks for the customer's street name and stores it in the customer_details dictionary under 'type'
     customer_details['type'] = check_string(question)
     print("> ", customer_details['type'])  # Prints the customer's street type
 
     question = ("Please enter your suburb: ")
-    # Asks for the customer's suburb and stores it in the customer_details dictionary under the 'suburb' key
+    # Asks for the customer's suburb and stores it in the customer_details dictionary under 'suburb'
     customer_details['suburb'] = check_string(question)
     print("> ", customer_details['suburb'])  # Prints the customer's suburb
 
@@ -263,13 +263,13 @@ def click_collect_info():
 
     # Basic instructions for asking name
     question = ("Please enter your name: ")
-    # Asks for the customer's name and stores it in the customer_details dictionary under the 'name' key
+    # Asks for the customer's name and stores it in the customer_details dictionary under 'name'
     customer_details['name'] = check_string(question)
     print("> ", customer_details['name'])  # Prints the customer's name
 
     # Basic instructions for asking for user's phone number
     question = ("Please enter your phone number: ")
-    # Asks for the customer's phone number and stores it in the customer_details dictionary under the 'phone' key
+    # Asks for the customer's phone number and stores it in the customer_details dictionary under 'phone'
     customer_details['phone'] = check_phone(question, PH_LOW, PH_HIGH)
     # Prints the customer's phone number
     print("> ", customer_details['phone'])
@@ -284,7 +284,7 @@ def check_information(del_click):
     print()
     # Prompt the user to enter a number between LOW and HIGH for confirmation
     question = (f"Enter a number between {LOW} and {HIGH}: ")
-    # Display the options to start another order or exit the bot
+    # Asks the user if the details shown are correct
     print("Please confirm if the details you have entered are correct")
     if del_click == "click":
         print
@@ -306,7 +306,9 @@ def check_information(del_click):
         print("")
         # Clear the customer details dictionary
         customer_details.clear()
+        # Clears del_click
         del_click = ""
+        # Restarts program by running main
         main()
 
 # Make a menu of at least 12 items for the user to choose from
@@ -356,7 +358,7 @@ def order_merch():
             # Prompt the user to choose a merchandise item
             merch_ordered = val_int(CATALOG_LOW, CATALOG_HIGH, question)
 
-            # Adjust the merchandise item index to match the list index
+            # Adjust the merchandise item index number to match the list index number
             merch_ordered = merch_ordered - 1
             num_merch = num_merch - 1  # Decrease the remaining number of merchandise items to order
 
@@ -379,13 +381,13 @@ def print_order(del_click):
     Returns: None
     '''
     count = 0
-    delivery_cost = 0
-    if del_click == "delivery":
-        if len(order_list) < 5:
-            print("It seems your order has", len(order_list),
+    delivery_cost = 0  # Sets the delivery cost to 0 by default
+    if del_click == "delivery":  # Checks to see if the order is for delivery
+        if len(order_list) < 5:  # Checks to see if the length of the order list is less than 5
+            print("It seems your order has", len(order_list),  # Prints a message including the total amount of items in order_list
                   "item/s in the cart, a $9 delivery charge will be applied")
-            delivery_cost = 9
-        else:
+            delivery_cost = 9  # Changes delivery_cost to be equal to 9 / $9
+        else:  # If order has 5 or more items in its order_list then the delivery_cost will still = 0
             delivery_cost = 0
 
     print("\n-----------------------------------------------------")
@@ -415,7 +417,7 @@ def print_order(del_click):
     for item in order_list:
         # Prints the ordered item and its corresponding cost
         print("{}  ${:.2f}" .format(item, order_cost[count]))
-        # Increments the counter variable for the next iteration.
+        # Adds one to the counter variable
         count = count + 1
 
     print("-----------------------------------------------------")
@@ -450,16 +452,16 @@ def confirm_cancel(del_click):
     print("To cancel your order, enter 2")
     # Validate the user's input to confirm or cancel the order
     confirm = val_int(LOW, HIGH, question)
-    if confirm == 1:
+    if confirm == 1:  # If order is confirmed
         # Order confirmation
         print("Your merch order has been confirmed!")
         print("Your merch order will be with you soon!")
-        new_exit(del_click)  # Exit the program or proceed to the next step
-    elif confirm == 2:
+        new_exit(del_click)  # (Continues onto new_exit(del_click)
+    elif confirm == 2:  # If order is cancelled
         # Order cancellation
         print("Your merch order has been cancelled")
         print("You can restart your merch order or exit the BOT")
-        new_exit(del_click)  # Exit the program or proceed to the next step
+        new_exit(del_click)  # (Continues onto new_exit(del_click)
 
 # Ask if user wishes to place another order, or exit the bot
 
@@ -491,8 +493,9 @@ def new_exit(del_click):
     elif confirm == 2:
         # Exit the bot
         # if order is for pickup, notify the user that they will receive a text message when order is ready once confirmed
-        if del_click == "click": 
-            print(f"Please wait for an incoming text message to come within the next few days to +64{customer_details['phone']}")
+        if del_click == "click":
+            print(
+                f"Please wait for an incoming text message to come within the next few days to +64{customer_details['phone']}")
         print("Exit")
         # Clear the order list, order cost list, and customer details dictionary
         order_list.clear()
