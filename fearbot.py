@@ -1,6 +1,5 @@
 # FEARBOT Program
 # A progam that can be used by 'FEARNOT' to order LE SSERAFIM merch
-# dealing with comments when the internal is finished
 
 # Imports a library that alLOWs the program to have randomness where necessary
 import random
