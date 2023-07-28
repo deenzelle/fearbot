@@ -23,15 +23,15 @@ order_list = []
 order_cost = []
 
 # List of names
-names = ["Kazuha", "Chaewon", "Nicole", "Kaitlin", "Denzelle",
-         "Yunjin", "Eunchae", "Jaehyun", "Jungkook", "Sakura"]
+names = ["KAZUHA", "CHAEWON", "NICOLE", "KAITLIN", "DENZELLE",
+         "YUNJIN", "EUNCHAE", "JAEHYUN", "JUNGKOOK", "SAKURA", "HANNI", "HAERIN"]
 
 # List of merchandise items available to purchase
 merch_names = [
     'FEARLESS ALBUM (BLACK PETROL VER)',
     'FEARLESS ALBUM (MONOCHROME BOUQUET VER)',
     'FEARLESS ALBUM (BLUE CYPHER VER)',
-    'ANTIFRAGILE ALBUM (FROZEN AQUAMARINE VER)',
+    'ANTIFRAGILE ALBUM (COLD AQUAMARINE VER)',
     'ANTIFRAGILE ALBUM (IRIDESCENT OPAL VER)',
     'ANTIFRAGILE ALBUM (MIDNIGHT ONYX VER)',
     'UNFORGIVEN ALBUM (DEWY SAGE VER)',
@@ -189,7 +189,7 @@ def order_type():
     print("Do you want your order delivered or are you planning to click & collect?")
     print("To select delivery enter '1'")
     print("To select Click & Collect enter '2'")
-    print("Please note that if delivery is selected, a $9 delivery charge will be added to total cost if 5 or less items are ordered otherwise delivery is free :)")
+    print("Please note that if delivery is selected, a $9 delivery charge will be added to total cost if less than 5 items are ordered otherwise delivery is free :)")
     # Prompts the user to enter a number between 1 and 2 to select delivery or click & collect
     delivery = val_int(LOW, HIGH, question)
 
@@ -334,9 +334,9 @@ def catalog():
     print("                          LE SSERAFIM MERCH                            ")
     print("-------------------------------------------------------------------------")
     for count in range(number_merch):
-        # Prints the item number, merchandise name, and price in a formatted string
-        print("{} {} ${:.2f}".format(
-            count + 1, merch_names[count], merch_prices[count]))
+        # Format the item number, merchandise name, and price in a fixed-width string
+        item_info = "{:2} {:<40} ${:>8.2f}".format(count + 1, merch_names[count], merch_prices[count])
+        print(item_info)
     print()
 
 
@@ -391,13 +391,13 @@ def print_order(del_click):
     Returns: None
     '''
     count = 0
-    # delivery_cost = 9 if len(order_list) < 5 and del_click == "delivery" else 0 
+    # delivery_cost = 9 if len(order_list) < 5 and del_click == "delivery" else 0
     # ^^ ALTERNATIVE WAY OF DOING THE BELOW 7 LINES OF CODE
     delivery_cost = 0  # Sets the delivery cost to 0 by default
     if del_click == "delivery":  # Checks to see if the order is for delivery
         if len(order_list) < 5:  # Checks to see if the length of the order list is less than 5
             print("It seems your order has", len(order_list),  # Prints a message including the total amount of items in order_list
-                  "item/s in the cart, a $9 delivery charge will be applied")
+                  "item/s in the cart. A $9 delivery charge will be applied")
             delivery_cost = 9  # Changes delivery_cost to be equal to 9 / $9
         else:  # If order has 5 or more items in its order_list then the delivery_cost will still = 0
             delivery_cost = 0
