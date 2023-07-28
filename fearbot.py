@@ -391,6 +391,8 @@ def print_order(del_click):
     Returns: None
     '''
     count = 0
+    # delivery_cost = 9 if len(order_list) < 5 and del_click == "delivery" else 0 
+    # ^^ ALTERNATIVE WAY OF DOING THE BELOW 7 LINES OF CODE
     delivery_cost = 0  # Sets the delivery cost to 0 by default
     if del_click == "delivery":  # Checks to see if the order is for delivery
         if len(order_list) < 5:  # Checks to see if the length of the order list is less than 5
