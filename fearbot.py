@@ -213,6 +213,9 @@ def delivery_info():
     Parameters: None
     Returns: None
     '''
+    print("\n-------------------------------------------------------------------------")
+    print("                             DELIVERY INFO                               ")
+    print("-------------------------------------------------------------------------")
     print("Please provide your name, phone number and address so we know where to send the merch to you!")
     # Basic instructions for asking name
     question = ("Please enter your name: ")
@@ -258,6 +261,9 @@ def click_collect_info():
     Parameters: None
     Returns: None
     '''
+    print("\n-------------------------------------------------------------------------")
+    print("                        CLICK AND COLLECT INFO                          ")
+    print("-------------------------------------------------------------------------")
     # Asks the user to provide Click & Collect information (NAME AND PHONE NUMBER)
     print("Please provide your name and phone number so we know how to contact you!")
 
@@ -282,6 +288,9 @@ def check_information(del_click):
     Returns: None
     '''
     print()
+    print("\n-------------------------------------------------------------------------")
+    print("                         CHECK YOUR DETAILS!                            ")
+    print("-------------------------------------------------------------------------")
     # Prompt the user to enter a number between LOW and HIGH for confirmation
     question = (f"Enter a number between {LOW} and {HIGH}: ")
     # Asks the user if the details shown are correct
@@ -322,9 +331,9 @@ def catalog():
     '''
     number_merch = 13  # Total number of merchandise items
     print()
-    print("\n--------------------------------------------------")
-    print("                LE SSERAFIM MERCH                   ")
-    print("--------------------------------------------------")
+    print("\n-------------------------------------------------------------------------")
+    print("                          LE SSERAFIM MERCH                            ")
+    print("-------------------------------------------------------------------------")
     for count in range(number_merch):
         # Prints the item number, merchandise name, and price in a formatted string
         print("{} {} ${:.2f}".format(
@@ -347,6 +356,8 @@ def order_merch():
 
     question = f"Enter a number between {NUM_LOW} and {NUM_HIGH}: "
     print("How many pieces of merchandise would you like to order?")
+    print("Please note that you can only order up to",
+          NUM_HIGH, "items at a time")
     num_merch = val_int(NUM_LOW, NUM_HIGH, question)
 
     # Choosing merch item
@@ -444,6 +455,9 @@ def confirm_cancel(del_click):
     '''
     # Display a blank line for separation
     print()
+    print("\n--------------------------------------------------")
+    print("                CONFIRM OR CANCEL                   ")
+    print("--------------------------------------------------")
     # Prompt the user to enter a number between LOW and HIGH as confirmation
     question = (f"Enter a number between {LOW} and {HIGH}: ")
     # Display the confirmation prompt to the user
@@ -473,6 +487,9 @@ def new_exit(del_click):
     Returns: None
     '''
     print()
+    print("\n--------------------------------------------------")
+    print("                NEW ORDER OR EXIT                   ")
+    print("--------------------------------------------------")
     # Prompt the user to enter a number between LOW and HIGH for confirmation
     question = (f"Enter a number between {LOW} and {HIGH}: ")
     # Display the options to start another order or exit the bot
